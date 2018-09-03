@@ -11,13 +11,13 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import com.situ.day034.entity.User;
-import com.situ.student.entity.PageBean;
+import com.situ.student.entity.Student_PageBean;
 import com.situ.student.entity.Student;
+import com.situ.student.entity.User;
 import com.situ.student.service.IStudentService;
 import com.situ.student.service.impl.StudentServiceImpl;
 
-public class StudentServlet extends HttpServlet {
+public class StudentController extends HttpServlet {
 	private IStudentService studentService = new StudentServiceImpl();
 
 	@Override
@@ -38,8 +38,9 @@ public class StudentServlet extends HttpServlet {
 			resp.sendRedirect(req.getContextPath() + "/login.jsp");
 			return;
 		}
-
+		
 		req.setCharacterEncoding("UTF-8");
+		//
 		String method = req.getParameter("method");
 		switch (method) {
 		case "list":
@@ -90,9 +91,9 @@ public class StudentServlet extends HttpServlet {
 		}
 		int pageSize = Integer.parseInt(pageSizeStr);
 		// 2、封装成PageBean，调用Service层业务逻辑
-		PageBean pageBean = studentService.getPageBean(pageNo, pageSize);
+		Student_PageBean pageBean = studentService.getPageBean(pageNo, pageSize);
 		System.out.println(pageBean);
-		// 3、控制界面跳转
+		//3、放入数据，转发
 		req.setAttribute("pageBean", pageBean);
 		req.getRequestDispatcher("student_list.jsp").forward(req, resp);
 	}

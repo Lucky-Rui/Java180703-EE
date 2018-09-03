@@ -2,7 +2,7 @@ package com.situ.student.entity;
 
 import java.util.List;
 
-public class PageBean {
+public class Student_PageBean {
 	//当前是第几页
 	private Integer pageNo;
 	//一页有多少数据

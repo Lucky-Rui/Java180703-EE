@@ -16,7 +16,7 @@ import com.situ.student.service.impl.StudentServiceImpl;
 /**
  * 学生的Controller
  */
-public class FindStudentServlet extends HttpServlet {
+public class FindStudentController extends HttpServlet {
 	private IStudentService studentService = new StudentServiceImpl();
 
 	@Override

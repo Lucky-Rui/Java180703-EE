@@ -4,7 +4,7 @@ import java.util.List;
 
 import com.situ.student.dao.IStudentDao;
 import com.situ.student.dao.impl.StudentDaoImpl;
-import com.situ.student.entity.PageBean;
+import com.situ.student.entity.Student_PageBean;
 import com.situ.student.entity.Student;
 import com.situ.student.service.IStudentService;
 
@@ -66,8 +66,8 @@ public class StudentServiceImpl implements IStudentService {
 	 * 
 	 */
 	@Override
-	public PageBean getPageBean(int pageNo, int pageSize) {
-		PageBean pageBean = new PageBean();
+	public Student_PageBean getPageBean(int pageNo, int pageSize) {
+		Student_PageBean pageBean = new Student_PageBean();
 		// 当前是第几页
 		pageBean.setPageNo(pageNo);
 		// 一页有多少条数据

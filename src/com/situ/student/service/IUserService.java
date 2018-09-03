@@ -1,8 +1,8 @@
-package com.situ.day034.service;
+package com.situ.student.service;
 
 import org.apache.catalina.deploy.LoginConfig;
 
-import com.situ.day034.entity.User;
+import com.situ.student.entity.User;
 
 public interface IUserService {
 	/**

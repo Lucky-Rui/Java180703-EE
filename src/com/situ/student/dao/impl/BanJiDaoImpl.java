@@ -1,4 +1,4 @@
-package com.situ.weekend07.banji.dao.impl;
+package com.situ.student.dao.impl;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -8,9 +8,9 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.situ.weekend07.banji.dao.IBanJiDao;
-import com.situ.weekend07.banji.entity.BanJi;
-import com.situ.weekend07.banji.util.JDBCUtil;
+import com.situ.student.dao.IBanJiDao;
+import com.situ.student.entity.BanJi;
+import com.situ.student.util.JDBCUtil;
 
 public class BanJiDaoImpl implements IBanJiDao {
 	private List<BanJi> list = new ArrayList<>();

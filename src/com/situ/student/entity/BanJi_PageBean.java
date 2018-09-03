@@ -1,4 +1,4 @@
-package com.situ.weekend07.banji.entity;
+package com.situ.student.entity;
 
 import java.util.List;
 

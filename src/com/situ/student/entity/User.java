@@ -1,4 +1,4 @@
-package com.situ.day034.entity;
+package com.situ.student.entity;
 
 public class User {
 	private Integer id;

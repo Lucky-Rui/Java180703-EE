@@ -11,7 +11,7 @@ import com.situ.student.entity.Student;
 import com.situ.student.service.IStudentService;
 import com.situ.student.service.impl.StudentServiceImpl;
 
-public class AddStudentServlet extends HttpServlet{
+public class AddStudentController extends HttpServlet{
 	/**
 	 * 
 	 */
@@ -29,6 +29,6 @@ public class AddStudentServlet extends HttpServlet{
 		boolean result = studentService.insert(student);
 		System.out.println(result ? "成功" : "失败");
 		//重定向到列表界面
-		resp.sendRedirect("/Java180703(Java EE)/student_list.jsp");
+		resp.sendRedirect(req.getContextPath()+"student_list.jsp");
 	}
 }

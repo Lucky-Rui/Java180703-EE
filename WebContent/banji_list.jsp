@@ -1,4 +1,4 @@
-<%@page import="com.situ.weekend07.banji.entity.BanJi_PageBean"%>
+<%@page import="com.situ.student.entity.BanJi_PageBean"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>

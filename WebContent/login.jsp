@@ -7,10 +7,19 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<form action="<%=request.getContextPath()%>/login2" method="post">
+	<form action="${pageContext.request.contextPath}/user?method=login" method="post">
 		用户名:<input type="text" name="name"/><br/>
 		密码:<input type="password" name="password"/><br/>
+		验证码：<input type="text" name="checkCode"/><br>
+		<input type="text" >
+		<img id="codeImg" alt="" src="${pageContext.request.contextPath}/checkImg" onclick="refreshCode()"><br>
 		<input type="submit" value="登录"/>
 	</form>
+	<script type="text/javascript" src="lib/jquery/jquery-1.11.1.js"></script>
+	<script type="text/javascript">
+	function refreshCode() {
+		$("#codeImg").attr("src", "${pageContext.request.contextPath}/checkImg?"+Math.random());
+	}
+	</script>
 </body>
 </html>

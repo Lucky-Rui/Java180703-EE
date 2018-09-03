@@ -1,4 +1,4 @@
-package com.situ.weekend07.banji.entity;
+package com.situ.student.entity;
 
 public class BanJi {
 	private Integer classId;

@@ -1,5 +1,5 @@
+<%@page import="com.situ.student.entity.Student_PageBean"%>
 <%@page import="com.situ.student.entity.Student"%>
-<%@page import="com.situ.student.entity.PageBean"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
@@ -19,11 +19,15 @@
 	<%-- <%=变量或表达式%> --%>
 
 	<%
-		PageBean pageBean = (PageBean) request.getAttribute("pageBean");
+		Student_PageBean pageBean = (Student_PageBean) request.getAttribute("pageBean");
 	%>
 	<div style="text-align: center;">
 		<h2>学生信息表</h2>
 	</div>
+	<div style="text-align: center;">
+		<h4>欢迎：${user.name} <a href="${pageContext.request.contextPath}/user?method=logout">注销</a><br/></h4>
+	</div>
+	
 	<div style="text-align: center; height: 40px;">
 		<a href="student_add.jsp">新增</a>
 		<a style="margin-left: 40px;" href="javascript:deleteAll()">批量删除</a>
@@ -127,9 +131,9 @@
 		function deleteById(id,pageNo) {
 			//用户点了确定，confirm返回的是true，
 			//用户点了取消，confirm返回的是false，
-			var isDel = confirm("您确认要删除么？");
+			var isDel = confirm("您确认要删除这个信息吗？");
 			if (isDel) {
-				location.href = "<%=request.getContextPath()%>/student?method=deleteById&id="+ id+"&pageNo="+pageNo;
+				location.href = "${pageContext.request.contextPath}/student?method=deleteById&id="+ id+"&pageNo="+pageNo;
 			}
 		}
 		
@@ -140,9 +144,12 @@
 			$("input[name=selectIds]").prop("checked", isChecked);
 		}
 		function deleteAll() {
-			$("#mainForm").attr("action", "<%=request.getContextPath()%>/student?method=deleteAll");
+			var isDel = confirm("您确认要删除这些信息吗？");
+			if(isDel){
+			$("#mainForm").attr("action", "${pageContext.request.contextPath}/student?method=deleteAll");
 			//用代码方式提交表单
 			$("#mainForm").submit();
+			}
 		}
 	</script>
 </body>

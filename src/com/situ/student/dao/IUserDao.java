@@ -1,8 +1,8 @@
-package com.situ.day034.dao;
+package com.situ.student.dao;
 
 import java.util.List;
 
-import com.situ.day034.entity.User;
+import com.situ.student.entity.User;
 
 public interface IUserDao {
 	/**

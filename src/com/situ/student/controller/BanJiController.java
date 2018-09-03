@@ -1,4 +1,4 @@
-package com.situ.weekend07.banji.controller;
+package com.situ.student.controller;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -10,12 +10,12 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.situ.weekend07.banji.entity.BanJi;
-import com.situ.weekend07.banji.entity.BanJi_PageBean;
-import com.situ.weekend07.banji.service.IBanJiService;
-import com.situ.weekend07.banji.service.impl.BanJiServiceImpl;
+import com.situ.student.entity.BanJi;
+import com.situ.student.entity.BanJi_PageBean;
+import com.situ.student.service.IBanJiService;
+import com.situ.student.service.impl.BanJiServiceImpl;
 
-public class BanJiServlet extends HttpServlet {
+public class BanJiController extends HttpServlet {
 	private IBanJiService banjiService = new BanJiServiceImpl();
 
 	@Override

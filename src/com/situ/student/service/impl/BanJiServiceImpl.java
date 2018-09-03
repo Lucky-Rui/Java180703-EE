@@ -1,12 +1,12 @@
-package com.situ.weekend07.banji.service.impl;
+package com.situ.student.service.impl;
 
 import java.util.List;
 
-import com.situ.weekend07.banji.dao.IBanJiDao;
-import com.situ.weekend07.banji.dao.impl.BanJiDaoImpl;
-import com.situ.weekend07.banji.entity.BanJi;
-import com.situ.weekend07.banji.entity.BanJi_PageBean;
-import com.situ.weekend07.banji.service.IBanJiService;
+import com.situ.student.dao.IBanJiDao;
+import com.situ.student.dao.impl.BanJiDaoImpl;
+import com.situ.student.entity.BanJi;
+import com.situ.student.entity.BanJi_PageBean;
+import com.situ.student.service.IBanJiService;
 
 public class BanJiServiceImpl implements IBanJiService{
 private IBanJiDao iBanJiDao = new BanJiDaoImpl();
