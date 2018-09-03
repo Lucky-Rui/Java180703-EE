@@ -20,7 +20,6 @@
 
 	<%
 		PageBean pageBean = (PageBean) request.getAttribute("pageBean");
-		//pageContext.getAttribute("pageBean");
 	%>
 	<div style="text-align: center;">
 		<h2>学生信息表</h2>
@@ -30,6 +29,7 @@
 		<a style="margin-left: 40px;" href="javascript:deleteAll()">批量删除</a>
 		
 		<!-- 解决jsp中路径写死问题  <%=request.getContextPath()%>-->
+		<!--  -->
 		<form style="display: inline; margin-left: 40px;"
 			action="<%=request.getContextPath()%>/student?method=pageList"
 			method="post">
@@ -58,7 +58,7 @@
 					<td>${student.age}</td>
 					<td>${student.gender}</td>
 					<td>
-						<a href="<%=request.getContextPath()%>/student?method=toUpdate&id=${student.id}">修改</a></td>
+						<a href="${pageContext.request.contextPath}/student?method=toUpdate&id=${student.id}">修改</a></td>
 					<td>
 						<a href="javascript:deleteById(${student.id},${pageBean.pageNo})">删除</a>
 					</td>
@@ -81,7 +81,7 @@
 				</c:if>
 				<c:if test="${pageBean.pageNo != 1}">
 					<li>
-						<a href="<%=request.getContextPath()%>/student?method=pageList&pageNo=${pageBean.pageNo - 1}&pageSize=3"
+						<a href="${pageContext.request.contextPath}/student?method=pageList&pageNo=${pageBean.pageNo - 1}&pageSize=3"
 							aria-label="Previous"> 
 							<span aria-hidden="true">&laquo;</span>
 						</a>
@@ -94,7 +94,7 @@
 						<li class="active"><a href="#">${i}</a></li>
 					</c:if>
 					<c:if test="${pageBean.pageNo != i}">
-						<li><a href="<%=request.getContextPath()%>/student?method=pageList&pageNo=${i}&pageSize=3">${i}</a></li>
+						<li><a href="${pageContext.request.contextPath}/student?method=pageList&pageNo=${i}&pageSize=3">${i}</a></li>
 					</c:if>
 				</c:forEach>
 				<!--中间页码结束  -->
@@ -108,7 +108,7 @@
 				</c:if>	
 				<c:if test="${pageBean.pageNo != pageBean.totalPage}">
 					<li>
-						<a href="<%=request.getContextPath()%>/student?method=pageList&pageNo=${pageBean.pageNo + 1}&pageSize=3"
+						<a href="${pageContext.request.contextPath}/student?method=pageList&pageNo=${pageBean.pageNo + 1}&pageSize=3"
 							aria-label="Next"> 
 							<span aria-hidden="true">&raquo;</span>
 						</a>

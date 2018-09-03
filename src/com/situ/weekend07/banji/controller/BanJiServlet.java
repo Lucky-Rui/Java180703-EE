@@ -16,16 +16,22 @@ import com.situ.weekend07.banji.service.IBanJiService;
 import com.situ.weekend07.banji.service.impl.BanJiServiceImpl;
 
 public class BanJiServlet extends HttpServlet {
-	private IBanJiService iBanJiService = new BanJiServiceImpl();
+	private IBanJiService banjiService = new BanJiServiceImpl();
 
 	@Override
 	protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		req.setCharacterEncoding("UTF-8");
 		resp.setContentType("text/html;charset=utf-8");
 
-		List<BanJi> list = iBanJiService.list();
+		List<BanJi> list = banjiService.list();
 		String method = req.getParameter("method");
 		switch (method) {
+		case "list":
+			list(req, resp);
+			break;
+		case "pageList":
+			pageList(req, resp);
+			break;
 		case "insert":
 			insert(req, resp);
 			break;
@@ -37,12 +43,6 @@ public class BanJiServlet extends HttpServlet {
 			break;
 		case "update":
 			update(req, resp);
-			break;
-		case "list":
-			list(req, resp);
-			break;
-		case "pageList":
-			pageList(req, resp);
 			break;
 		case "deleteAll":
 			deleteAll(req, resp);
@@ -57,10 +57,10 @@ public class BanJiServlet extends HttpServlet {
 		// 1、得到浏览器传递过来的参数信息
 		String name = req.getParameter("name");
 		if (name == null || name.equals("")) {// 查找所有
-			list = iBanJiService.list();
+			list = banjiService.list();
 		} else {// 根据名字模糊查找
 			// 模糊查找
-			list = iBanJiService.searchByName(name);
+			list = banjiService.searchByName(name);
 		}
 		// 将list放到req里面
 		req.setAttribute("list", list);
@@ -74,7 +74,7 @@ public class BanJiServlet extends HttpServlet {
 		String className = req.getParameter("className");
 		BanJi banJi = new BanJi(id, className);
 		// 2、调用service处理
-		boolean result = iBanJiService.update(banJi);
+		boolean result = banjiService.update(banJi);
 		// 3、重定向到列表界面
 		resp.sendRedirect(req.getContextPath() + "/banji?method=pageList");
 	}
@@ -82,7 +82,7 @@ public class BanJiServlet extends HttpServlet {
 	private void toUpdate(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		// 根据id查找出要修改的班级对象
 		Integer id = Integer.parseInt(req.getParameter("id"));
-		BanJi banJi = iBanJiService.SearchById(id);
+		BanJi banJi = banjiService.SearchById(id);
 		// 转发到banji_update.jsp页面
 		req.setAttribute("banJi", banJi);
 		req.getRequestDispatcher("/banji_update.jsp").forward(req, resp);
@@ -93,7 +93,7 @@ public class BanJiServlet extends HttpServlet {
 		System.out.println(pageNo);
 		// 1.获得id
 		Integer id = Integer.parseInt(req.getParameter("id"));
-		boolean result = iBanJiService.deleteById(id);
+		boolean result = banjiService.deleteById(id);
 		resp.sendRedirect(req.getContextPath() + "/banji?method=pageList&pageNo=" + pageNo + "&pageSize=3");
 	}
 
@@ -102,7 +102,7 @@ public class BanJiServlet extends HttpServlet {
 		resp.setContentType("text/html;charset=utf-8");
 		String className = req.getParameter("className");
 		BanJi banJi = new BanJi(className);
-		boolean insertResult = iBanJiService.insert(banJi);
+		boolean insertResult = banjiService.insert(banJi);
 		resp.sendRedirect(req.getContextPath() + "/banji?method=pageList");
 	}
 
@@ -120,7 +120,7 @@ public class BanJiServlet extends HttpServlet {
 		}
 		int pageSize = Integer.parseInt(pageSizeStr);
 		// 2、封装成PageBean，调用Service层业务逻辑
-		BanJi_PageBean pageBean = iBanJiService.getPageBean(pageNo, pageSize);
+		BanJi_PageBean pageBean = banjiService.getPageBean(pageNo, pageSize);
 		System.out.println(pageBean);
 		// 3、控制界面跳转
 		req.setAttribute("pageBean", pageBean);
@@ -130,7 +130,7 @@ public class BanJiServlet extends HttpServlet {
 	private void deleteAll(HttpServletRequest req, HttpServletResponse resp) throws IOException {
 		String[] selectIds = req.getParameterValues("selectIds");
 		System.out.println(Arrays.toString(selectIds));
-		iBanJiService.deleteAll(selectIds);
+		banjiService.deleteAll(selectIds);
 		resp.sendRedirect(req.getContextPath() + "/banji?method=pageList");
 	}
 

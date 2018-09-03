@@ -6,20 +6,59 @@ import com.situ.weekend07.banji.entity.BanJi;
 import com.situ.weekend07.banji.entity.BanJi_PageBean;
 
 public interface IBanJiService {
-
-	public abstract boolean insert(BanJi banJi);
-
-	public abstract boolean deleteById(Integer id);
-
-	public abstract boolean update(BanJi banJi);
-
-	public abstract List<BanJi> searchByName(String name);
-
+	/**
+	 * 
+	 * @return
+	 */
 	public abstract List<BanJi> list();
 
+	/**
+	 * 
+	 * @param id
+	 * @return
+	 */
+	public abstract boolean deleteById(Integer id);
+
+	/**
+	 * 
+	 * @param banJi
+	 * @return
+	 */
+	public abstract boolean insert(BanJi banJi);
+
+	/**
+	 * 
+	 * @param banJi
+	 * @return
+	 */
+	public abstract boolean update(BanJi banJi);
+
+	/**
+	 * 
+	 * @param name
+	 * @return
+	 */
+	public abstract List<BanJi> searchByName(String name);
+
+	/**
+	 * 
+	 * @param id
+	 * @return
+	 */
 	public abstract BanJi SearchById(Integer id);
 
+	/**
+	 * 
+	 * @param pageNo
+	 * @param pageSize
+	 * @return
+	 */
 	public abstract BanJi_PageBean getPageBean(int pageNo, int pageSize);
 
+	/**
+	 * 
+	 * @param selectIds
+	 * @return
+	 */
 	public abstract boolean deleteAll(String[] selectIds);
 }

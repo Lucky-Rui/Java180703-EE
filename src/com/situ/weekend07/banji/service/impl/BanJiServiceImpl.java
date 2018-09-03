@@ -3,13 +3,13 @@ package com.situ.weekend07.banji.service.impl;
 import java.util.List;
 
 import com.situ.weekend07.banji.dao.IBanJiDao;
-import com.situ.weekend07.banji.dao.impl.BanJiDaoJdbcImpl;
+import com.situ.weekend07.banji.dao.impl.BanJiDaoImpl;
 import com.situ.weekend07.banji.entity.BanJi;
 import com.situ.weekend07.banji.entity.BanJi_PageBean;
 import com.situ.weekend07.banji.service.IBanJiService;
 
 public class BanJiServiceImpl implements IBanJiService{
-private IBanJiDao iBanJiDao = new BanJiDaoJdbcImpl();
+private IBanJiDao iBanJiDao = new BanJiDaoImpl();
 	
 	public BanJi SearchById(Integer id) {
 		return iBanJiDao.SearchById(id);

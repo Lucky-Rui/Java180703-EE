@@ -12,7 +12,7 @@ import com.situ.weekend07.banji.dao.IBanJiDao;
 import com.situ.weekend07.banji.entity.BanJi;
 import com.situ.weekend07.banji.util.JDBCUtil;
 
-public class BanJiDaoJdbcImpl implements IBanJiDao {
+public class BanJiDaoImpl implements IBanJiDao {
 	private List<BanJi> list = new ArrayList<>();
 	private final String SQL_NAME = "BanJi";
 	private Connection connection = null;

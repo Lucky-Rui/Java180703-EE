@@ -3,13 +3,13 @@ package com.situ.student.service.impl;
 import java.util.List;
 
 import com.situ.student.dao.IStudentDao;
-import com.situ.student.dao.impl.StudentDaoJdbcImpl;
+import com.situ.student.dao.impl.StudentDaoImpl;
 import com.situ.student.entity.PageBean;
 import com.situ.student.entity.Student;
 import com.situ.student.service.IStudentService;
 
 public class StudentServiceImpl implements IStudentService {
-	private IStudentDao studentDao = new StudentDaoJdbcImpl();
+	private IStudentDao studentDao = new StudentDaoImpl();
 
 	/**
 	 * 增加学生

@@ -15,7 +15,7 @@ import com.situ.student.util.JDBCUtil;
 /**
  * 用JDBC的方式实现数据的增删改查
  */
-public class StudentDaoJdbcImpl implements IStudentDao {
+public class StudentDaoImpl implements IStudentDao {
 	/**
 	 * 插入学生
 	 */

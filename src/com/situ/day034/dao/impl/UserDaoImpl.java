@@ -12,7 +12,7 @@ import com.situ.day034.entity.User;
 import com.situ.student.entity.Student;
 import com.situ.student.util.JDBCUtil;
 
-public class UserDaoJdbcImpl implements IUserDao {
+public class UserDaoImpl implements IUserDao {
 
 	@Override
 	public User findLogin(String name, String password) {
