@@ -3,11 +3,11 @@ package com.situ.weekend07.banji.entity;
 public class BanJi {
 	private Integer classId;
 	private String className;
-	
+
 	public BanJi() {
 		// TODO Auto-generated constructor stub
 	}
-	
+
 	public BanJi(String className) {
 		super();
 		this.className = className;

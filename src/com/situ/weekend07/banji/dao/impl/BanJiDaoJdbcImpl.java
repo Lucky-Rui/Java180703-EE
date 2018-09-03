@@ -14,7 +14,7 @@ import com.situ.weekend07.banji.util.JDBCUtil;
 
 public class BanJiDaoJdbcImpl implements IBanJiDao {
 	private List<BanJi> list = new ArrayList<>();
-	private String SQL_NAME = "BanJi";
+	private final String SQL_NAME = "BanJi";
 	private Connection connection = null;
 	private Statement statement = null;
 	private PreparedStatement preparedStatement = null;

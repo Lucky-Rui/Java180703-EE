@@ -31,13 +31,13 @@ public class StudentServlet extends HttpServlet {
 		// http://localhost:8080/Java180703(Java%20EE)/student
 
 		// 判断用户有没有登陆，利用session，没有登陆就提示登陆
-		// HttpSession session = req.getSession();
-		// User user = (User) session.getAttribute("user");
-		// if (user == null) {
-		// // 用户没有登陆，重定向到登陆界面
-		// resp.sendRedirect(req.getContextPath() + "/login.jsp");
-		// return;
-		// }
+		HttpSession session = req.getSession();
+		User user = (User) session.getAttribute("user");
+		if (user == null) {
+			// 用户没有登陆，重定向到登陆界面
+			resp.sendRedirect(req.getContextPath() + "/login.jsp");
+			return;
+		}
 
 		req.setCharacterEncoding("UTF-8");
 		String method = req.getParameter("method");
