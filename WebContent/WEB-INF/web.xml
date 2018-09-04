@@ -186,4 +186,38 @@
     <servlet-name>CheckImgServlet</servlet-name>
     <url-pattern>/checkImg</url-pattern>
   </servlet-mapping>
+  <filter>
+    <filter-name>HelloFilter1</filter-name>
+    <filter-class>com.situ.day036.filter.HelloFilter1</filter-class>
+  </filter>
+  <filter-mapping>
+    <filter-name>HelloFilter1</filter-name>
+    <url-pattern>/*</url-pattern>
+  </filter-mapping>
+  <filter>
+    <filter-name>HelloFilter2</filter-name>
+    <filter-class>com.situ.day036.filter.HelloFilter2</filter-class>
+  </filter>
+  <filter-mapping>
+    <filter-name>HelloFilter2</filter-name>
+    <url-pattern>/*</url-pattern>
+  </filter-mapping>
+  <filter>
+    <display-name>EncodingFilter</display-name>
+    <filter-name>EncodingFilter</filter-name>
+    <filter-class>com.situ.student.filter.EncodingFilter</filter-class>
+  </filter>
+  <filter-mapping>
+    <filter-name>EncodingFilter</filter-name>
+    <url-pattern>/*</url-pattern>
+  </filter-mapping>
+  <filter>
+    <display-name>LoginFilter</display-name>
+    <filter-name>LoginFilter</filter-name>
+    <filter-class>com.situ.student.filter.LoginFilter</filter-class>
+  </filter>
+  <filter-mapping>
+    <filter-name>LoginFilter</filter-name>
+    <url-pattern>/*</url-pattern>
+  </filter-mapping>
 </web-app>

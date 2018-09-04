@@ -11,7 +11,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import com.situ.student.entity.Student_PageBean;
+import com.situ.student.entity.PageBean;
 import com.situ.student.entity.Student;
 import com.situ.student.entity.User;
 import com.situ.student.service.IStudentService;
@@ -25,10 +25,8 @@ public class StudentController extends HttpServlet {
 		// http://localhost:8080/Java180703(JavaEE)/student?method=list
 		// System.out.println(req.getContextPath());// /Java180703(JavaEE)
 		// System.out.println(req.getServletPath());// /student
-		// System.out.println(req.getRequestURI());//
-		// /Java180703(Java%20EE)/student
-		// System.out.println(req.getRequestURL());//
-		// http://localhost:8080/Java180703(Java%20EE)/student
+		// System.out.println(req.getRequestURI());// /Java180703(Java%20EE)/student
+		// System.out.println(req.getRequestURL());// http://localhost:8080/Java180703(Java%20EE)/student
 
 		// 判断用户有没有登陆，利用session，没有登陆就提示登陆
 		HttpSession session = req.getSession();
@@ -40,7 +38,6 @@ public class StudentController extends HttpServlet {
 		}
 		
 		req.setCharacterEncoding("UTF-8");
-		//
 		String method = req.getParameter("method");
 		switch (method) {
 		case "list":
@@ -91,7 +88,7 @@ public class StudentController extends HttpServlet {
 		}
 		int pageSize = Integer.parseInt(pageSizeStr);
 		// 2、封装成PageBean，调用Service层业务逻辑
-		Student_PageBean pageBean = studentService.getPageBean(pageNo, pageSize);
+		PageBean<Student> pageBean= studentService.getPageBean(pageNo, pageSize);
 		System.out.println(pageBean);
 		//3、放入数据，转发
 		req.setAttribute("pageBean", pageBean);

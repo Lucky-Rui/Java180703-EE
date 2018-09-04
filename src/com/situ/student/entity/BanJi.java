@@ -1,42 +1,44 @@
 package com.situ.student.entity;
 
 public class BanJi {
-	private Integer classId;
-	private String className;
+	private Integer id;
+	private String name;
+
+	public Integer getId() {
+		return id;
+	}
+
+	public void setId(Integer id) {
+		this.id = id;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
 
 	public BanJi() {
+		super();
 		// TODO Auto-generated constructor stub
 	}
 
-	public BanJi(String className) {
+	public BanJi(String name) {
 		super();
-		this.className = className;
+		this.name = name;
 	}
 
-	public BanJi(Integer classId, String className) {
+	public BanJi(Integer id, String name) {
 		super();
-		this.classId = classId;
-		this.className = className;
-	}
-
-	public Integer getClassId() {
-		return classId;
-	}
-
-	public void setClassId(Integer classId) {
-		this.classId = classId;
-	}
-
-	public String getClassName() {
-		return className;
-	}
-
-	public void setClassName(String className) {
-		this.className = className;
+		this.id = id;
+		this.name = name;
 	}
 
 	@Override
 	public String toString() {
-		return "banji [classId=" + classId + ", className=" + className + "]";
+		return "BanJi [id=" + id + ", name=" + name + "]";
 	}
+
 }

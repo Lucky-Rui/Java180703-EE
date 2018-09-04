@@ -11,7 +11,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.situ.student.entity.BanJi;
-import com.situ.student.entity.BanJi_PageBean;
+import com.situ.student.entity.PageBean;
 import com.situ.student.service.IBanJiService;
 import com.situ.student.service.impl.BanJiServiceImpl;
 
@@ -20,10 +20,10 @@ public class BanJiController extends HttpServlet {
 
 	@Override
 	protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		
 		req.setCharacterEncoding("UTF-8");
 		resp.setContentType("text/html;charset=utf-8");
 
-		List<BanJi> list = banjiService.list();
 		String method = req.getParameter("method");
 		switch (method) {
 		case "list":
@@ -53,7 +53,7 @@ public class BanJiController extends HttpServlet {
 	}
 
 	private void list(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		List<BanJi> list;
+		List<BanJi> list = new ArrayList<>();
 		// 1、得到浏览器传递过来的参数信息
 		String name = req.getParameter("name");
 		if (name == null || name.equals("")) {// 查找所有
@@ -61,6 +61,9 @@ public class BanJiController extends HttpServlet {
 		} else {// 根据名字模糊查找
 			// 模糊查找
 			list = banjiService.searchByName(name);
+		}
+		for (BanJi banJi : list) {
+			System.out.println(banJi);
 		}
 		// 将list放到req里面
 		req.setAttribute("list", list);
@@ -71,10 +74,10 @@ public class BanJiController extends HttpServlet {
 	private void update(HttpServletRequest req, HttpServletResponse resp) throws IOException {
 		// 1、得到浏览器传递过来的参数信息
 		Integer id = Integer.parseInt(req.getParameter("id"));
-		String className = req.getParameter("className");
-		BanJi banJi = new BanJi(id, className);
+		String name = req.getParameter("name");
+		BanJi banJi = new BanJi(id, name);
 		// 2、调用service处理
-		boolean result = banjiService.update(banJi);
+		banjiService.update(banJi);
 		// 3、重定向到列表界面
 		resp.sendRedirect(req.getContextPath() + "/banji?method=pageList");
 	}
@@ -93,15 +96,13 @@ public class BanJiController extends HttpServlet {
 		System.out.println(pageNo);
 		// 1.获得id
 		Integer id = Integer.parseInt(req.getParameter("id"));
-		boolean result = banjiService.deleteById(id);
+		banjiService.deleteById(id);
 		resp.sendRedirect(req.getContextPath() + "/banji?method=pageList&pageNo=" + pageNo + "&pageSize=3");
 	}
 
 	private void insert(HttpServletRequest req, HttpServletResponse resp) throws IOException {
-		resp.setCharacterEncoding("utf-8");
-		resp.setContentType("text/html;charset=utf-8");
-		String className = req.getParameter("className");
-		BanJi banJi = new BanJi(className);
+		String name = req.getParameter("name");
+		BanJi banJi = new BanJi(name);
 		boolean insertResult = banjiService.insert(banJi);
 		resp.sendRedirect(req.getContextPath() + "/banji?method=pageList");
 	}
@@ -116,11 +117,11 @@ public class BanJiController extends HttpServlet {
 
 		String pageSizeStr = req.getParameter("pageSize");
 		if (pageSizeStr == null || pageSizeStr.equals("")) {
-			pageSizeStr = "5";
+			pageSizeStr = "3";
 		}
 		int pageSize = Integer.parseInt(pageSizeStr);
 		// 2、封装成PageBean，调用Service层业务逻辑
-		BanJi_PageBean pageBean = banjiService.getPageBean(pageNo, pageSize);
+		PageBean<BanJi> pageBean = banjiService.getPageBean(pageNo, pageSize);
 		System.out.println(pageBean);
 		// 3、控制界面跳转
 		req.setAttribute("pageBean", pageBean);

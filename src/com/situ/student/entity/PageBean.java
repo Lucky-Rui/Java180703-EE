@@ -1,8 +1,13 @@
 package com.situ.student.entity;
 
 import java.util.List;
-
-public class Student_PageBean {
+/**
+ * 分页共用
+ * @author WANGRUI
+ *
+ * @param <T>
+ */
+public class PageBean<T> {
 	//当前是第几页
 	private Integer pageNo;
 	//一页有多少数据
@@ -12,7 +17,7 @@ public class Student_PageBean {
 	//一共有多少页		totalPage = Math.ceil(totalCount/pageSize)
 	private Integer totalPage;
 	//当前页的数据
-	private List<Student> list;
+	private List<T> list;
 	public Integer getPageNo() {
 		return pageNo;
 	}
@@ -37,10 +42,11 @@ public class Student_PageBean {
 	public void setTotalPage(Integer totalPage) {
 		this.totalPage = totalPage;
 	}
-	public List<Student> getList() {
+	
+	public List<T> getList() {
 		return list;
 	}
-	public void setList(List<Student> list) {
+	public void setList(List<T> list) {
 		this.list = list;
 	}
 	@Override

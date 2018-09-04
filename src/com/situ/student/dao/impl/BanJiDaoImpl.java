@@ -13,30 +13,26 @@ import com.situ.student.entity.BanJi;
 import com.situ.student.util.JDBCUtil;
 
 public class BanJiDaoImpl implements IBanJiDao {
-	private List<BanJi> list = new ArrayList<>();
-	private final String SQL_NAME = "BanJi";
 	private Connection connection = null;
 	private Statement statement = null;
 	private PreparedStatement preparedStatement = null;
 	private ResultSet resultSet = null;
+	private List<BanJi> list = null;
 
 	@Override
 	public List<BanJi> list() {
+		List<BanJi> list = new ArrayList<>();
 		try {
 			connection = JDBCUtil.getConnection();
-			String sql = "select * from " + SQL_NAME + ";";
+			String sql = "select * from  banji ;";
 			statement = connection.createStatement();
 			resultSet = statement.executeQuery(sql);
-			List<BanJi> CopyList = new ArrayList<>();
 			while (resultSet.next()) {
-				Integer id = null;
-				String name = null;
-				id = resultSet.getInt("classId");
-				name = resultSet.getString("className");
+				Integer id = resultSet.getInt("id");
+				String name = resultSet.getString("name");
 				BanJi banJi = new BanJi(id, name);
-				CopyList.add(banJi);
+				list.add(banJi);
 			}
-			list = CopyList;
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
@@ -47,13 +43,12 @@ public class BanJiDaoImpl implements IBanJiDao {
 
 	@Override
 	public int insert(BanJi banJi) {
-		String name = banJi.getClassName();
 		int count = 0;
 		try {
 			connection = JDBCUtil.getConnection();
-			String sql = ("insert into BanJi(className) values (?);");
+			String sql = "insert into banji(name) values ?;";
 			preparedStatement = connection.prepareStatement(sql);
-			preparedStatement.setString(1, name);
+			preparedStatement.setString(1, banJi.getName());
 			System.out.println(preparedStatement);
 			count = preparedStatement.executeUpdate();
 		} catch (SQLException e) {
@@ -69,7 +64,7 @@ public class BanJiDaoImpl implements IBanJiDao {
 		int count = 0;
 		try {
 			connection = JDBCUtil.getConnection();
-			String sql = ("DELETE from BanJi where classId = ?;");
+			String sql = "DELETE from banji where id = ?;";
 			preparedStatement = connection.prepareStatement(sql);
 			preparedStatement.setInt(1, id);
 			count = preparedStatement.executeUpdate();
@@ -83,15 +78,13 @@ public class BanJiDaoImpl implements IBanJiDao {
 
 	@Override
 	public int update(BanJi banJi) {
-		int id = banJi.getClassId();
-		String name = banJi.getClassName();
 		int count = 0;
 		try {
 			connection = JDBCUtil.getConnection();
-			String sql = ("UPDATE BanJi set className = ? WHERE classId = ?;");
+			String sql = "UPDATE banji set name = ? WHERE id = ?;";
 			preparedStatement = connection.prepareStatement(sql);
-			preparedStatement.setString(1, name);
-			preparedStatement.setInt(2, id);
+			preparedStatement.setString(1, banJi.getName());
+			preparedStatement.setInt(2, banJi.getId());
 			count = preparedStatement.executeUpdate();
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -103,22 +96,19 @@ public class BanJiDaoImpl implements IBanJiDao {
 
 	@Override
 	public List<BanJi> searchByName(String name) {
+		List<BanJi> list = new ArrayList<>();
 		try {
 			connection = JDBCUtil.getConnection();
-			String sql = ("SELECT * from BanJi WHERE className like ?;");
+			String sql = "SELECT * from BanJi WHERE name like ?;";
 			preparedStatement = connection.prepareStatement(sql);
 			preparedStatement.setString(1, "%" + name + "%");
 			resultSet = preparedStatement.executeQuery();
-			List<BanJi> CopyList = new ArrayList<>();
 			while (resultSet.next()) {
-				Integer id = null;
-				String className = null;
-				id = resultSet.getInt("id");
-				className = resultSet.getString("name");
-				BanJi banJi = new BanJi(id, className);
-				CopyList.add(banJi);
+				Integer id = resultSet.getInt("id");
+				String name1 = resultSet.getString("name");
+				BanJi banJi = new BanJi(id, name1);
+				list.add(banJi);
 			}
-			list = CopyList;
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
@@ -132,16 +122,14 @@ public class BanJiDaoImpl implements IBanJiDao {
 		BanJi banJi = new BanJi();
 		try {
 			connection = JDBCUtil.getConnection();
-			String sql = ("SELECT * from BanJi WHERE classId = ?;");
+			String sql = ("SELECT * from BanJi WHERE id = ?;");
 			preparedStatement = connection.prepareStatement(sql);
 			preparedStatement.setInt(1, id);
 			resultSet = preparedStatement.executeQuery();
 			while (resultSet.next()) {
-				Integer classId = null;
-				String className = null;
-				classId = resultSet.getInt("classId");
-				className = resultSet.getString("className");
-				banJi = new BanJi(classId, className);
+				Integer id1 = resultSet.getInt("id");
+				String name = resultSet.getString("name");
+				banJi = new BanJi(id1, name);
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -156,7 +144,7 @@ public class BanJiDaoImpl implements IBanJiDao {
 		int count = 0;
 		try {
 			connection = JDBCUtil.getConnection();
-			String sql = "select count(classId) from " + SQL_NAME + ";";
+			String sql = "select count(id) from banji;";
 			preparedStatement = connection.prepareStatement(sql);
 			System.out.println(statement);
 			resultSet = preparedStatement.executeQuery();
@@ -176,17 +164,15 @@ public class BanJiDaoImpl implements IBanJiDao {
 		List<BanJi> list = new ArrayList<>();
 		try {
 			connection = JDBCUtil.getConnection();
-			String sql = "select * from " + SQL_NAME + " limit ?,?;";
+			String sql = "select id,name from banji limit ?,?;";
 			preparedStatement = connection.prepareStatement(sql);
 			preparedStatement.setInt(1, offset);
 			preparedStatement.setInt(2, pageSize);
 			System.out.println(preparedStatement);
 			resultSet = preparedStatement.executeQuery();
 			while (resultSet.next()) {
-				Integer id = null;
-				String name = null;
-				id = resultSet.getInt("classId");
-				name = resultSet.getString("className");
+				Integer id = resultSet.getInt("id");
+				String name = resultSet.getString("name");
 				BanJi banJi = new BanJi(id, name);
 				list.add(banJi);
 			}
@@ -203,7 +189,7 @@ public class BanJiDaoImpl implements IBanJiDao {
 		int count = 0;
 		try {
 			connection = JDBCUtil.getConnection();
-			String sql = ("DELETE from BanJi where classId = ?;");
+			String sql = "DELETE from banji where id = ?;";
 			preparedStatement = connection.prepareStatement(sql);
 			for (String id : selectIds) {
 				preparedStatement.setInt(1, Integer.parseInt(id));

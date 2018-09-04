@@ -1,11 +1,9 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 	<head>
 		<meta charset="UTF-8">
 		<title></title>
-		<link rel="stylesheet" href="${pageContext.request.contextPath}/lib/bootstrap-3.3.7-dist/css/bootstrap.css" />
+		<link rel="stylesheet" href="../lib/bootstrap-3.3.7-dist/css/bootstrap.css" />
 	</head>
 	<body>
 		<!--导航开始-->
@@ -25,8 +23,8 @@
 		    <!-- Collect the nav links, forms, and other content for toggling -->
 		    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 		      <ul class="nav navbar-nav">
-		        <li class="active"><a href="student_list.jsp"><span class="glyphicon glyphicon-home" aria-hidden="true"></span>&nbsp;&nbsp;&nbsp;学生管理 </a></li>
-		        <li><a href="banji_list.jsp"><span class="glyphicon glyphicon-home" aria-hidden="true"></span>&nbsp;&nbsp;&nbsp;班级管理</a></li>
+		        <li><a href="student_list.html"><span class="glyphicon glyphicon-home" aria-hidden="true"></span>&nbsp;&nbsp;&nbsp;学生管理 </a></li>
+		        <li class="active"><a href="banji_list.html"><span class="glyphicon glyphicon-home" aria-hidden="true"></span>&nbsp;&nbsp;&nbsp;班级管理</a></li>
 		        <li><a href="#"><span class="glyphicon glyphicon-home" aria-hidden="true"></span>&nbsp;&nbsp;&nbsp;课程管理</a></li>
 		        <li><a href="#"><span class="glyphicon glyphicon-home" aria-hidden="true"></span>&nbsp;&nbsp;&nbsp;教务管理</a></li>
 		      </ul>
@@ -43,37 +41,48 @@
 				<!--左边部分（链接列表组）开始-->
 				<div class="col-md-2">
 					<div class="list-group">
-					  <a href="student_list.jsp" class="list-group-item ">
-					    学生列表
+					  <a href="banji_list.html" class="list-group-item active">
+					    班级列表
 					  </a>
-					  <a href="student_add.jsp" class="list-group-item active">学生添加</a>
+					  <a href="banji_add.html" class="list-group-item">班级添加</a>
 					</div>
 				</div>
 				<!--左边部分（链接列表组）结束-->
-				<!--右边部分（form表单）开始-->
+				<!--右边部分（table表显示信息）开始-->
 				<div class="col-md-10">
-					<form>
-					  <div class="form-group">
-					    <label for="name">姓名</label>
-					    <input type="text" class="form-control" id="name" placeholder="例如：张三">
-					  </div>
-					  <div class="form-group">
-					    <label for="age">年龄</label>
-					    <input type="text" class="form-control" id="age" placeholder="例如：10">
-					  </div>
-					  <div class="form-group">
-					    <label for="gender">性别</label>
-					    <input type="text" class="form-control" id="gender" placeholder="例如：男/女">
-					  </div>
-					  <button type="submit" class="btn btn-default">Submit</button>
-					</form>
+					<table class="table table-hover">
+						<tr>
+							<th>ID</th>
+							<th>姓名</th>
+							<th>年龄</th>
+							<th>性别</th>
+						</tr>
+						<tr>
+							<td>1</td>
+							<td>1</td>
+							<td>1</td>
+							<td>1</td>
+						</tr>
+						<tr>
+							<td>2</td>
+							<td>2</td>
+							<td>2</td>
+							<td>2</td>
+						</tr>
+						<tr>
+							<td>3</td>
+							<td>3</td>
+							<td>3</td>
+							<td>3</td>
+						</tr>
+					</table>
 				</div>
-				<!--右边部分（form表单）结束-->
+				<!--右边部分（table表显示信息）结束-->
 			</div>
 			
 		</div>
 		<!--内容部分结束-->
-		<script type="text/javascript" src="${pageContext.request.contextPath}/lib/jquery/jquery-1.11.1.js" ></script>
-		<script type="text/javascript" src="${pageContext.request.contextPath}/lib/bootstrap-3.3.7-dist/js/bootstrap.js" ></script>
+		<script type="text/javascript" src="../lib/jquery/jquery-1.11.1.js" ></script>
+		<script type="text/javascript" src="../lib/bootstrap-3.3.7-dist/js/bootstrap.js" ></script>
 	</body>
 </html>

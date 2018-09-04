@@ -11,7 +11,6 @@
 		用户名:<input type="text" name="name"/><br/>
 		密码:<input type="password" name="password"/><br/>
 		验证码：<input type="text" name="checkCode"/><br>
-		<input type="text" >
 		<img id="codeImg" alt="" src="${pageContext.request.contextPath}/checkImg" onclick="refreshCode()"><br>
 		<input type="submit" value="登录"/>
 	</form>

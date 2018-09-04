@@ -3,7 +3,7 @@ package com.situ.student.service;
 import java.util.List;
 
 import com.situ.student.entity.BanJi;
-import com.situ.student.entity.BanJi_PageBean;
+import com.situ.student.entity.PageBean;
 
 public interface IBanJiService {
 	/**
@@ -53,7 +53,7 @@ public interface IBanJiService {
 	 * @param pageSize
 	 * @return
 	 */
-	BanJi_PageBean getPageBean(int pageNo, int pageSize);
+	PageBean<BanJi> getPageBean(int pageNo, int pageSize);
 
 	/**
 	 * 
