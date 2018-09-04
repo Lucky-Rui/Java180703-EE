@@ -29,15 +29,15 @@ public class StudentController extends HttpServlet {
 		// System.out.println(req.getRequestURL());// http://localhost:8080/Java180703(Java%20EE)/student
 
 		// 判断用户有没有登陆，利用session，没有登陆就提示登陆
-		HttpSession session = req.getSession();
+		/*HttpSession session = req.getSession();
 		User user = (User) session.getAttribute("user");
 		if (user == null) {
 			// 用户没有登陆，重定向到登陆界面
 			resp.sendRedirect(req.getContextPath() + "/login.jsp");
 			return;
-		}
+		}*/
 		
-		req.setCharacterEncoding("UTF-8");
+		//req.setCharacterEncoding("UTF-8");
 		String method = req.getParameter("method");
 		switch (method) {
 		case "list":
@@ -84,7 +84,7 @@ public class StudentController extends HttpServlet {
 		int pageNo = Integer.parseInt(pageNoStr);
 		String pageSizeStr = req.getParameter("pageSize");
 		if (pageSizeStr == null || pageSizeStr.equals("")) {
-			pageSizeStr = "3";
+			pageSizeStr = "20";
 		}
 		int pageSize = Integer.parseInt(pageSizeStr);
 		// 2、封装成PageBean，调用Service层业务逻辑
@@ -143,7 +143,7 @@ public class StudentController extends HttpServlet {
 		studentService.deleteById(id);
 		// 重定向到列表界面
 		// resp.sendRedirect(req.getContextPath() + "/student?method=list");
-		resp.sendRedirect(req.getContextPath() + "/student?method=pageList&pageNo=" + pageNo + "&pageSize=3");
+		resp.sendRedirect(req.getContextPath() + "/student?method=pageList&pageNo=" + pageNo + "&pageSize=20");
 	}
 
 	public void list(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {

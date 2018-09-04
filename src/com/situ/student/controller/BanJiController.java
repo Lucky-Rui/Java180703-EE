@@ -21,7 +21,7 @@ public class BanJiController extends HttpServlet {
 	@Override
 	protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		
-		req.setCharacterEncoding("UTF-8");
+		//req.setCharacterEncoding("UTF-8");
 		resp.setContentType("text/html;charset=utf-8");
 
 		String method = req.getParameter("method");
@@ -97,7 +97,7 @@ public class BanJiController extends HttpServlet {
 		// 1.获得id
 		Integer id = Integer.parseInt(req.getParameter("id"));
 		banjiService.deleteById(id);
-		resp.sendRedirect(req.getContextPath() + "/banji?method=pageList&pageNo=" + pageNo + "&pageSize=3");
+		resp.sendRedirect(req.getContextPath() + "/banji?method=pageList&pageNo=" + pageNo + "&pageSize=20");
 	}
 
 	private void insert(HttpServletRequest req, HttpServletResponse resp) throws IOException {
@@ -117,7 +117,7 @@ public class BanJiController extends HttpServlet {
 
 		String pageSizeStr = req.getParameter("pageSize");
 		if (pageSizeStr == null || pageSizeStr.equals("")) {
-			pageSizeStr = "3";
+			pageSizeStr = "20";
 		}
 		int pageSize = Integer.parseInt(pageSizeStr);
 		// 2、封装成PageBean，调用Service层业务逻辑

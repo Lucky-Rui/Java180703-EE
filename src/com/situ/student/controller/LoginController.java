@@ -1,7 +1,9 @@
 package com.situ.student.controller;
 
 import java.io.IOException;
+import java.util.List;
 
+import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -15,12 +17,12 @@ import com.situ.student.service.impl.UserServiceImpl;
 /**
  * Servlet implementation class LoginServlet
  */
-public class UserController extends HttpServlet {
+public class LoginController extends HttpServlet {
 	private IUserService uerService = new UserServiceImpl();
 
 	@Override
 	protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		req.setCharacterEncoding("utf-8");
+		//req.setCharacterEncoding("utf-8");
 		String method = req.getParameter("method");
 		switch (method) {
 		case "login":
@@ -44,7 +46,12 @@ public class UserController extends HttpServlet {
 	private void logout(HttpServletRequest req, HttpServletResponse resp) throws IOException {
 		HttpSession session = req.getSession();
 		User user = (User) session.getAttribute("user");
+		//先得到servletContext对象
+		ServletContext servletContext = getServletContext();
+		//获取列表集合
+		List<User> onLineUserList = (List<User>) servletContext.getAttribute("onLineUserList");
 		if (user != null) {
+			onLineUserList.remove(user);
 			// 销毁Session
 			session.invalidate();
 			// 重定向到登陆界面
@@ -75,12 +82,19 @@ public class UserController extends HttpServlet {
 		// 3、业务处理
 		User user = uerService.login(name, password);
 		// 转发或者重定向到页面
-		if (user != null) {
-			// 登陆成功
+		if (user != null) {// 登陆成功
 			// 创建session
 			HttpSession session = req.getSession();
-			// 将数据保存到域对象
+			// 将数据保存到域对象session
 			session.setAttribute("user", user);
+			//先得到servletContext对象
+			ServletContext servletContext = getServletContext();
+			//获取列表集合
+			List<User> onLineUserList = (List<User>) servletContext.getAttribute("onLineUserList");
+			if (onLineUserList != null) {
+				//添加当前登录的user
+				onLineUserList.add(user);
+			}
 			// 重定向到学生列表
 			resp.sendRedirect(req.getContextPath() + "/student?method=pageList");
 		} else {

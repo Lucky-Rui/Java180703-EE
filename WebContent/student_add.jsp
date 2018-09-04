@@ -25,13 +25,14 @@
 		    <!-- Collect the nav links, forms, and other content for toggling -->
 		    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 		      <ul class="nav navbar-nav">
-		        <li class="active"><a href="student_list.jsp"><span class="glyphicon glyphicon-home" aria-hidden="true"></span>&nbsp;&nbsp;&nbsp;学生管理 </a></li>
-		        <li><a href="banji_list.jsp"><span class="glyphicon glyphicon-home" aria-hidden="true"></span>&nbsp;&nbsp;&nbsp;班级管理</a></li>
+		        <li class="active"><a href="${pageContext.request.contextPath}/student?method=pageList"><span class="glyphicon glyphicon-home" aria-hidden="true"></span>&nbsp;&nbsp;&nbsp;学生管理 </a></li>
+		        <li><a href="${pageContext.request.contextPath}/banji?method=pageList"><span class="glyphicon glyphicon-home" aria-hidden="true"></span>&nbsp;&nbsp;&nbsp;班级管理</a></li>
 		        <li><a href="#"><span class="glyphicon glyphicon-home" aria-hidden="true"></span>&nbsp;&nbsp;&nbsp;课程管理</a></li>
 		        <li><a href="#"><span class="glyphicon glyphicon-home" aria-hidden="true"></span>&nbsp;&nbsp;&nbsp;教务管理</a></li>
+		        <li><a href="online_user_list.jsp"><span class="glyphicon glyphicon-home" aria-hidden="true"></span>&nbsp;&nbsp;&nbsp;在线人数</a></li>
 		      </ul>
 		      <ul class="nav navbar-nav navbar-right">
-		        <li><a href="#">Link</a></li>
+		        <li><a href="${pageContext.request.contextPath}/login?method=logout"><span class="glyphicon glyphicon-home" aria-hidden="true"></span>&nbsp;&nbsp;&nbsp;退出</a></li>
 		      </ul>
 		    </div><!-- /.navbar-collapse -->
 		  </div><!-- /.container-fluid -->
@@ -43,7 +44,7 @@
 				<!--左边部分（链接列表组）开始-->
 				<div class="col-md-2">
 					<div class="list-group">
-					  <a href="student_list.jsp" class="list-group-item ">
+					  <a href="${pageContext.request.contextPath}/student?method=pageList" class="list-group-item ">
 					    学生列表
 					  </a>
 					  <a href="student_add.jsp" class="list-group-item active">学生添加</a>
@@ -52,7 +53,7 @@
 				<!--左边部分（链接列表组）结束-->
 				<!--右边部分（form表单）开始-->
 				<div class="col-md-10">
-					<form>
+					<form action="${pageContext.request.contextPath}/student?method=insert"  method="post">
 					  <div class="form-group">
 					    <label for="name">姓名</label>
 					    <input type="text" class="form-control" id="name" placeholder="例如：张三">
@@ -65,7 +66,7 @@
 					    <label for="gender">性别</label>
 					    <input type="text" class="form-control" id="gender" placeholder="例如：男/女">
 					  </div>
-					  <button type="submit" class="btn btn-default">Submit</button>
+					  <button type="submit" class="btn btn-default">添加</button>
 					</form>
 				</div>
 				<!--右边部分（form表单）结束-->

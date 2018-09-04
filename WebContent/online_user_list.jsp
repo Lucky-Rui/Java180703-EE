@@ -1,14 +1,15 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<!DOCTYPE html>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%> 
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
-	<head>
-		<meta charset="UTF-8">
-		<title></title>
-		<link rel="stylesheet" href="${pageContext.request.contextPath}/lib/bootstrap-3.3.7-dist/css/bootstrap.css" />
-	</head>
-	<body>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Insert title here</title>
+<link rel="stylesheet" href="${pageContext.request.contextPath}/lib/bootstrap-3.3.7-dist/css/bootstrap.css" />
+</head>
+<body>
 		<!--导航开始-->
 		<nav class="navbar navbar-default">
 		  <div class="container">
@@ -27,10 +28,10 @@
 		    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 		      <ul class="nav navbar-nav">
 		        <li><a href="${pageContext.request.contextPath}/student?method=pageList"><span class="glyphicon glyphicon-home" aria-hidden="true"></span>&nbsp;&nbsp;&nbsp;学生管理 </a></li>
-		        <li class="active"><a href="${pageContext.request.contextPath}/banji?method=pageList"><span class="glyphicon glyphicon-home" aria-hidden="true"></span>&nbsp;&nbsp;&nbsp;班级管理</a></li>
+		        <li><a href="${pageContext.request.contextPath}/banji?method=pageList"><span class="glyphicon glyphicon-home" aria-hidden="true"></span>&nbsp;&nbsp;&nbsp;班级管理</a></li>
 		        <li><a href="#"><span class="glyphicon glyphicon-home" aria-hidden="true"></span>&nbsp;&nbsp;&nbsp;课程管理</a></li>
 		        <li><a href="#"><span class="glyphicon glyphicon-home" aria-hidden="true"></span>&nbsp;&nbsp;&nbsp;教务管理</a></li>
-		        <li><a href="online_user_list.jsp"><span class="glyphicon glyphicon-home" aria-hidden="true"></span>&nbsp;&nbsp;&nbsp;在线人数</a></li>
+		        <li class="active"><a href="online_user_list.jsp"><span class="glyphicon glyphicon-home" aria-hidden="true"></span>&nbsp;&nbsp;&nbsp;在线人数</a></li>
 		      </ul>
 		      <ul class="nav navbar-nav navbar-right">
 		        <li><a href="${pageContext.request.contextPath}/login?method=logout"><span class="glyphicon glyphicon-home" aria-hidden="true"></span>&nbsp;&nbsp;&nbsp;退出</a></li>
@@ -43,31 +44,29 @@
 		<div class="container">
 			<div class="row">
 				<!--左边部分（链接列表组）开始-->
-				<div class="col-md-2">
-					<div class="list-group">
-					  <a href="${pageContext.request.contextPath}/banji?method=pageList" class="list-group-item ">
-					    班级列表
-					  </a>
-					  <a href="banji_add.jsp" class="list-group-item active">班级添加</a>
-					</div>
-				</div>
 				<!--左边部分（链接列表组）结束-->
-				<!--右边部分（form表单）开始-->
-				<div class="col-md-10">
-					<form action="${pageContext.request.contextPath}/student?method=insert"  method="post">
-					  <div class="form-group">
-					    <label for="name">班级名称</label>
-					    <input type="text" class="form-control" id="name" placeholder="例如：Java1809">
-					  </div>
-					  <button type="submit" class="btn btn-default">添加</button>
-					</form>
+				<!--右边部分（table表显示信息）开始-->
+				<div class="col-md-12">
+					<table class="table table-hover">
+						<tr>
+							<th><h4 align="center">在线人数:${fn:length(onLineUserList)}</h4></th>
+						</tr>
+						<tr>
+							<th>登录的用户:</th>
+						</tr>
+							<c:forEach items="${applicationScope.onLineUserList}" var="user">
+								<tr>
+									<td>${user.name}</td>
+								</tr>
+							</c:forEach>
+					</table>
 				</div>
-				<!--右边部分（form表单）结束-->
+				<!--右边部分（table表显示信息）结束-->
 			</div>
 			
 		</div>
 		<!--内容部分结束-->
-		<script type="text/javascript" src="${pageContext.request.contextPath}/lib/jquery/jquery-1.11.1.js" ></script>
-		<script type="text/javascript" src="${pageContext.request.contextPath}/lib/bootstrap-3.3.7-dist/js/bootstrap.js" ></script>
-	</body>
+		<script type="text/javascript" src="{pageContext.request.contextPath}/lib/jquery/jquery-1.11.1.js" ></script>
+		<script type="text/javascript" src="{pageContext.request.contextPath}/lib/bootstrap-3.3.7-dist/js/bootstrap.js" ></script>
+</body>
 </html>

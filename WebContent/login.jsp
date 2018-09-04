@@ -7,7 +7,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<form action="${pageContext.request.contextPath}/user?method=login" method="post">
+	<form action="${pageContext.request.contextPath}/login?method=login" method="post">
 		用户名:<input type="text" name="name"/><br/>
 		密码:<input type="password" name="password"/><br/>
 		验证码：<input type="text" name="checkCode"/><br>

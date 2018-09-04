@@ -1,3 +1,4 @@
+<%@page import="java.io.PrintWriter"%>
 <%@page import="com.situ.student.entity.PageBean"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
@@ -14,7 +15,6 @@
 	<%
 		PageBean pageBean = (PageBean) request.getAttribute("pageBean");
 	%>
-	${pageBean}
 	<div style="text-align: center;">
 		<h2>班级信息表</h2>
 	</div>
