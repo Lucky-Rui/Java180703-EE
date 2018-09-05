@@ -29,9 +29,10 @@
 		        <li><a href="${pageContext.request.contextPath}/banji?method=pageList"><span class="glyphicon glyphicon-home" aria-hidden="true"></span>&nbsp;&nbsp;&nbsp;班级管理</a></li>
 		        <li><a href="#"><span class="glyphicon glyphicon-home" aria-hidden="true"></span>&nbsp;&nbsp;&nbsp;课程管理</a></li>
 		        <li><a href="#"><span class="glyphicon glyphicon-home" aria-hidden="true"></span>&nbsp;&nbsp;&nbsp;教务管理</a></li>
-		        <li><a href="online_user_list.jsp"><span class="glyphicon glyphicon-home" aria-hidden="true"></span>&nbsp;&nbsp;&nbsp;在线人数</a></li>
+		        <li><a href="${pageContext.request.contextPath}/online_user_list.jsp"><span class="glyphicon glyphicon-home" aria-hidden="true"></span>&nbsp;&nbsp;&nbsp;在线人数</a></li>
 		      </ul>
 		      <ul class="nav navbar-nav navbar-right">
+		      	<li><a href="${pageContext.request.contextPath}/student?method=pageList"><span>欢迎：${user.name}</span></a></li>
 		        <li><a href="${pageContext.request.contextPath}/login?method=logout"><span class="glyphicon glyphicon-home" aria-hidden="true"></span>&nbsp;&nbsp;&nbsp;退出</a></li>
 		      </ul>
 		    </div><!-- /.navbar-collapse -->
@@ -56,7 +57,7 @@
 					<form action="${pageContext.request.contextPath}/student?method=insert"  method="post">
 					  <div class="form-group">
 					    <label for="name">姓名</label>
-					    <input type="text" class="form-control" id="name" placeholder="例如：张三">
+					    <input type="text" class="form-control" id="aname" placeholder="例如：张三">
 					  </div>
 					  <div class="form-group">
 					    <label for="age">年龄</label>
@@ -67,14 +68,17 @@
 					    <input type="text" class="form-control" id="gender" placeholder="例如：男/女">
 					  </div>
 					  <button type="submit" class="btn btn-default">添加</button>
+					  <button type="reset" class="btn btn-default">重置</button>
 					</form>
 				</div>
 				<!--右边部分（form表单）结束-->
 			</div>
-			
 		</div>
 		<!--内容部分结束-->
 		<script type="text/javascript" src="${pageContext.request.contextPath}/lib/jquery/jquery-1.11.1.js" ></script>
 		<script type="text/javascript" src="${pageContext.request.contextPath}/lib/bootstrap-3.3.7-dist/js/bootstrap.js" ></script>
+		<script type="text/javascript">
+			
+		</script>
 	</body>
 </html>

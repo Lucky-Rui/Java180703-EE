@@ -31,8 +31,8 @@ public class LoginFilter implements Filter {
 		HttpServletResponse httpServletResponse = (HttpServletResponse) response;
 		String uri = httpServletRequest.getRequestURI();
 		String servletPath = httpServletRequest.getServletPath();
-		System.out.println("uri: " + uri);
-		System.out.println("servletPath: " + servletPath);
+		//System.out.println("uri: " + uri);
+		//System.out.println("servletPath: " + servletPath);
 		// uri: /Java1807Web/login.jsp
 		// uri: /Java1807Web/lib/jquery/jquery-1.11.1.js
 		// servletPath: /login.jsp
@@ -41,10 +41,12 @@ public class LoginFilter implements Filter {
 		if (lastIndex != -1) {
 			extension = servletPath.substring(lastIndex);// js css png
 		}
-
 		if ("/login.jsp".equals(servletPath) // 放行
-				|| "/checkImg".equals(servletPath) || "/login".equals(servletPath) || ".js".equalsIgnoreCase(extension)
-				|| ".css".equalsIgnoreCase(extension) || ".png".equalsIgnoreCase(extension)) {
+				|| "/checkImg".equals(servletPath) 
+				|| "/login".equals(servletPath) 
+				|| ".js".equalsIgnoreCase(extension)
+				|| ".css".equalsIgnoreCase(extension) 
+				|| ".png".equalsIgnoreCase(extension)) {
 			chain.doFilter(request, response);
 		} else {// 需要验证
 			// 判断用户有没有登录
@@ -58,6 +60,7 @@ public class LoginFilter implements Filter {
 			// 执行下一个过滤器或放行（访问servlet）
 			chain.doFilter(request, response);
 		}
+		//chain.doFilter(request, response);
 	}
 
 	public void destroy() {

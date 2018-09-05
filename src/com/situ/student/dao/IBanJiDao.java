@@ -5,65 +5,23 @@ import java.util.List;
 import com.situ.student.entity.BanJi;
 
 public interface IBanJiDao {
-	/**
-	 * 
-	 * @param id
-	 * @return
-	 */
-	int deleteById(Integer id);
 
-	/**
-	 * 
-	 * @param name
-	 * @return
-	 */
-	List<BanJi> searchByName(String name);
+	int insert(BanJi banji);
 
-	/**
-	 * 
-	 * @param banJi
-	 * @return
-	 */
-	int insert(BanJi banJi);
-
-	/**
-	 * 
-	 * @param banJi
-	 * @return
-	 */
-	int update(BanJi banJi);
-
-	/**
-	 * 
-	 * @return
-	 */
 	List<BanJi> list();
 
-	/**
-	 * 
-	 * @param id
-	 * @return
-	 */
-	BanJi SearchById(Integer id);
+	int deleteById(Integer id);
 
-	/**
-	 * 
-	 * @param offset
-	 * @param pageSize
-	 * @return
-	 */
+	List<BanJi> findByName(String name);
+
+	int updateBanJi(BanJi banJi);
+
+	BanJi findById(Integer id);
+
+	int getTotalCount();
+
 	List<BanJi> pageList(int offset, int pageSize);
 
-	/**
-	 * 
-	 * @param selectIds
-	 * @return
-	 */
 	int deleteAll(String[] selectIds);
 
-	/**
-	 * 
-	 * @return
-	 */
-	int getTotalCount();
 }

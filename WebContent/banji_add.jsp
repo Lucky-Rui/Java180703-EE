@@ -30,9 +30,10 @@
 		        <li class="active"><a href="${pageContext.request.contextPath}/banji?method=pageList"><span class="glyphicon glyphicon-home" aria-hidden="true"></span>&nbsp;&nbsp;&nbsp;班级管理</a></li>
 		        <li><a href="#"><span class="glyphicon glyphicon-home" aria-hidden="true"></span>&nbsp;&nbsp;&nbsp;课程管理</a></li>
 		        <li><a href="#"><span class="glyphicon glyphicon-home" aria-hidden="true"></span>&nbsp;&nbsp;&nbsp;教务管理</a></li>
-		        <li><a href="online_user_list.jsp"><span class="glyphicon glyphicon-home" aria-hidden="true"></span>&nbsp;&nbsp;&nbsp;在线人数</a></li>
+		        <li><a href="${pageContext.request.contextPath}/online_user_list.jsp"><span class="glyphicon glyphicon-home" aria-hidden="true"></span>&nbsp;&nbsp;&nbsp;在线人数</a></li>
 		      </ul>
 		      <ul class="nav navbar-nav navbar-right">
+		      	<li><a href="${pageContext.request.contextPath}/student?method=pageList"><span>欢迎：${user.name}</span></a></li>
 		        <li><a href="${pageContext.request.contextPath}/login?method=logout"><span class="glyphicon glyphicon-home" aria-hidden="true"></span>&nbsp;&nbsp;&nbsp;退出</a></li>
 		      </ul>
 		    </div><!-- /.navbar-collapse -->
@@ -60,6 +61,7 @@
 					    <input type="text" class="form-control" id="name" placeholder="例如：Java1809">
 					  </div>
 					  <button type="submit" class="btn btn-default">添加</button>
+					  <button type="reset" class="btn btn-default">重置</button>
 					</form>
 				</div>
 				<!--右边部分（form表单）结束-->

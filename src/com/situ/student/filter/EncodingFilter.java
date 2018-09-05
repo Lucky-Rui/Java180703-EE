@@ -31,7 +31,6 @@ public class EncodingFilter implements Filter {
 			request.setCharacterEncoding("utf-8");
 		}
 		// 执行下一个过滤器或者放行
-		
 		chain.doFilter(request, response);
 	}
 

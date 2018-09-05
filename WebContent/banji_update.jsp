@@ -9,11 +9,11 @@
 </head>
 <body>
 	<%
-		BanJi banJi = (BanJi)request.getAttribute("banJi");
+		BanJi banji = (BanJi)request.getAttribute("banji");
 	%>
-	<form action="<%=request.getContextPath()%>/banJi?method=update" method="post">
-		<input type="hidden" name="id" value="${banJi.classId}"/><br/>
-		班级：<input type="text" name="className" value="${banJi.className}"/><br/>
+	<form action="<%=request.getContextPath()%>/banji?method=update" method="post">
+		<input type="hidden" name="id" value="${banji.id}"/><br/>
+		班级：<input type="text" name="className" value="${banji.name}"/><br/>
 		<input type="submit" value="保存"/>
 		<input type="reset" value="重置"/>
 	</form>

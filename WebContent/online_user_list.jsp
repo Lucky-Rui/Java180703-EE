@@ -31,9 +31,10 @@
 		        <li><a href="${pageContext.request.contextPath}/banji?method=pageList"><span class="glyphicon glyphicon-home" aria-hidden="true"></span>&nbsp;&nbsp;&nbsp;班级管理</a></li>
 		        <li><a href="#"><span class="glyphicon glyphicon-home" aria-hidden="true"></span>&nbsp;&nbsp;&nbsp;课程管理</a></li>
 		        <li><a href="#"><span class="glyphicon glyphicon-home" aria-hidden="true"></span>&nbsp;&nbsp;&nbsp;教务管理</a></li>
-		        <li class="active"><a href="online_user_list.jsp"><span class="glyphicon glyphicon-home" aria-hidden="true"></span>&nbsp;&nbsp;&nbsp;在线人数</a></li>
+		        <li class="active"><a href="${pageContext.request.contextPath}/online_user_list.jsp"><span class="glyphicon glyphicon-home" aria-hidden="true"></span>&nbsp;&nbsp;&nbsp;在线人数</a></li>
 		      </ul>
 		      <ul class="nav navbar-nav navbar-right">
+		      	<li><a href="${pageContext.request.contextPath}/student?method=pageList"><span>欢迎：${user.name}</span></a></li>
 		        <li><a href="${pageContext.request.contextPath}/login?method=logout"><span class="glyphicon glyphicon-home" aria-hidden="true"></span>&nbsp;&nbsp;&nbsp;退出</a></li>
 		      </ul>
 		    </div><!-- /.navbar-collapse -->
@@ -49,14 +50,16 @@
 				<div class="col-md-12">
 					<table class="table table-hover">
 						<tr>
-							<th><h4 align="center">在线人数:${fn:length(onLineUserList)}</h4></th>
+							<th colspan="2"><h4 align="center">在线人数:${fn:length(onLineUserList)}人</h4></th>
 						</tr>
 						<tr>
 							<th>登录的用户:</th>
+							<th>登录的用户的密码:</th>
 						</tr>
 							<c:forEach items="${applicationScope.onLineUserList}" var="user">
 								<tr>
 									<td>${user.name}</td>
+									<td>${user.password}</td>
 								</tr>
 							</c:forEach>
 					</table>

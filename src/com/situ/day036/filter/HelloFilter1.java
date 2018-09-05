@@ -22,26 +22,26 @@ public class HelloFilter1 implements Filter {
 	// HelloFilter2.doFilter() after
 	// HelloFilter1.doFilter() after
 	public HelloFilter1() {
-		System.out.println("HelloFilter1.HelloFilter1()");
+		//System.out.println("HelloFilter1.HelloFilter1()");
 	}
 
 	@Override
 	public void init(FilterConfig filterConfig) throws ServletException {
-		System.out.println("HelloFilter1.init()");
+		//System.out.println("HelloFilter1.init()");
 	}
 
 	@Override
 	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain)
 			throws IOException, ServletException {
-		System.out.println("HelloFilter1.doFilter() before");
+		//System.out.println("HelloFilter1.doFilter() before");
 		// 执行下一个过滤器或放行（访问servlet）
 		chain.doFilter(request, response);
-		System.out.println("HelloFilter1.doFilter() after");
+		//System.out.println("HelloFilter1.doFilter() after");
 	}
 
 	@Override
 	public void destroy() {
-		System.out.println("HelloFilter1.destroy()");
+		//System.out.println("HelloFilter1.destroy()");
 	}
 
 }
