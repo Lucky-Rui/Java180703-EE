@@ -11,9 +11,9 @@
 	<%
 		BanJi banji = (BanJi)request.getAttribute("banji");
 	%>
-	<form action="<%=request.getContextPath()%>/banji?method=update" method="post">
+	<form action="${pageContext.request.contextPath}/banji?method=update" method="post">
 		<input type="hidden" name="id" value="${banji.id}"/><br/>
-		班级：<input type="text" name="className" value="${banji.name}"/><br/>
+		班级：<input type="text" name="name" value="${banji.name}"/><br/>
 		<input type="submit" value="保存"/>
 		<input type="reset" value="重置"/>
 	</form>

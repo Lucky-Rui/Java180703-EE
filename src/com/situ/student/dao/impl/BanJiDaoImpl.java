@@ -67,7 +67,7 @@ public class BanJiDaoImpl implements IBanJiDao {
 		int count = 0;
 		try {
 			connection = JDBCUtil.getConnection();
-			String sql = "DELETE from banji where id = ?";
+			String sql = "delete from banji where id = ?";
 			preparedStatement = connection.prepareStatement(sql);
 			preparedStatement.setInt(1, id);
 			count = preparedStatement.executeUpdate();
@@ -190,6 +190,7 @@ public class BanJiDaoImpl implements IBanJiDao {
 			preparedStatement = connection.prepareStatement(sql);
 			preparedStatement.setString(1, banJi.getName());
 			preparedStatement.setInt(2, banJi.getId());
+			//处理结果
 			count = preparedStatement.executeUpdate();
 			if (count == 1) {
 				System.out.println("修改成功");

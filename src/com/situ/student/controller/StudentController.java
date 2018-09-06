@@ -23,19 +23,19 @@ public class StudentController extends HttpServlet {
 		// http://localhost:8080/Java180703(JavaEE)/student?method=list
 		// System.out.println(req.getContextPath());// /Java180703(JavaEE)
 		// System.out.println(req.getServletPath());// /student
-		// System.out.println(req.getRequestURI());// /Java180703(Java%20EE)/student
-		// System.out.println(req.getRequestURL());// http://localhost:8080/Java180703(Java%20EE)/student
+		// System.out.println(req.getRequestURI());//
+		// /Java180703(Java%20EE)/student
+		// System.out.println(req.getRequestURL());//
+		// http://localhost:8080/Java180703(Java%20EE)/student
 
 		// 判断用户有没有登陆，利用session，没有登陆就提示登陆
-		/*HttpSession session = req.getSession();
-		User user = (User) session.getAttribute("user");
-		if (user == null) {
-			// 用户没有登陆，重定向到登陆界面
-			resp.sendRedirect(req.getContextPath() + "/login.jsp");
-			return;
-		}*/
-		
-		//req.setCharacterEncoding("UTF-8");
+		/*
+		 * HttpSession session = req.getSession(); User user = (User)
+		 * session.getAttribute("user"); if (user == null) { // 用户没有登陆，重定向到登陆界面
+		 * resp.sendRedirect(req.getContextPath() + "/login.jsp"); return; }
+		 */
+
+		// req.setCharacterEncoding("UTF-8");
 		String method = req.getParameter("method");
 		switch (method) {
 		case "list":
@@ -86,9 +86,9 @@ public class StudentController extends HttpServlet {
 		}
 		int pageSize = Integer.parseInt(pageSizeStr);
 		// 2、封装成PageBean，调用Service层业务逻辑
-		PageBean<Student> pageBean= studentService.getPageBean(pageNo, pageSize);
+		PageBean<Student> pageBean = studentService.getPageBean(pageNo, pageSize);
 		System.out.println(pageBean);
-		//3、放入数据，转发
+		// 3、放入数据，转发
 		req.setAttribute("pageBean", pageBean);
 		req.getRequestDispatcher("student_list.jsp").forward(req, resp);
 	}
