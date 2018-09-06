@@ -60,7 +60,7 @@ public interface IBanJiService {
 	 * @param pageSize
 	 * @return
 	 */
-	PageBean<BanJi> getPageBean(int pageNo, int pageSize);
+	PageBean getPageBean(int pageNo, int pageSize);
 
 	/**
 	 * 批量删除

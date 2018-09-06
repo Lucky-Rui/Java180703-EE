@@ -1,13 +1,36 @@
 package com.situ.student.entity;
 
+/**
+ * 学生表
+ * 
+ * @author WANGRUI
+ *
+ */
 public class Student {
 	private Integer id;
 	private String name;
 	private Integer age;
 	private String gender;
+	private Integer banjiId;
 
 	public Student() {
 		super();
+		// TODO Auto-generated constructor stub
+	}
+
+	public Student(String name, Integer age, String gender) {
+		super();
+		this.name = name;
+		this.age = age;
+		this.gender = gender;
+	}
+
+	public Student(String name, Integer age, String gender, Integer banjiId) {
+		super();
+		this.name = name;
+		this.age = age;
+		this.gender = gender;
+		this.banjiId = banjiId;
 	}
 
 	public Student(Integer id, String name, Integer age, String gender) {
@@ -18,10 +41,19 @@ public class Student {
 		this.gender = gender;
 	}
 
-	public Student(String name, Integer age, String gender) {
+	public Student(Integer id, String name, Integer age, String gender, Integer banjiId) {
+		super();
+		this.id = id;
 		this.name = name;
 		this.age = age;
 		this.gender = gender;
+		this.banjiId = banjiId;
+	}
+
+	@Override
+	public String toString() {
+		return "Student [id=" + id + ", name=" + name + ", age=" + age + ", gender=" + gender + ", banjiId=" + banjiId
+				+ "]";
 	}
 
 	public Integer getId() {
@@ -56,9 +88,12 @@ public class Student {
 		this.gender = gender;
 	}
 
-	@Override
-	public String toString() {
-		return "Student [id=" + id + ", name=" + name + ", age=" + age + ", gender=" + gender + "]";
+	public Integer getBanjiId() {
+		return banjiId;
+	}
+
+	public void setBanjiId(Integer banjiId) {
+		this.banjiId = banjiId;
 	}
 
 }

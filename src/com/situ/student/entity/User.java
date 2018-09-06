@@ -1,5 +1,11 @@
 package com.situ.student.entity;
 
+/**
+ * 用户表
+ * 
+ * @author WANGRUI
+ *
+ */
 public class User {
 	private Integer id;
 	private String name;

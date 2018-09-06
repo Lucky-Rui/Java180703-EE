@@ -92,7 +92,6 @@ public class BanJiController extends HttpServlet {
 		boolean result = banjiService.insert(banji);
 		System.out.println(result ? "成功" : "失败");
 		// 重定向到列表界面
-		// resp.sendRedirect(req.getContextPath() + "/banji?method=list");
 		resp.sendRedirect(req.getContextPath() + "/banji?method=pageList");
 
 	}
@@ -106,8 +105,7 @@ public class BanJiController extends HttpServlet {
 		// 删除处理
 		banjiService.deleteById(id);
 		// 重定向到列表界面
-		// resp.sendRedirect(req.getContextPath() + "/banji?method=list");
-		resp.sendRedirect(req.getContextPath() + "/banji?method=pageList&pageNo=" + pageNo + "&pageSize=20");
+		resp.sendRedirect(req.getContextPath() + "/banji?method=pageList&pageNo=" + pageNo + "&pageSize=10");
 
 	}
 
@@ -120,7 +118,7 @@ public class BanJiController extends HttpServlet {
 		int pageNo = Integer.parseInt(pageNoStr);
 		String pageSizeStr = req.getParameter("pageSize");
 		if (pageSizeStr == null || pageSizeStr.equals("")) {
-			pageSizeStr = "20";
+			pageSizeStr = "10";
 		}
 		int pageSize = Integer.parseInt(pageSizeStr);
 		// 2、封装成PageBean，调用Service层业务逻辑

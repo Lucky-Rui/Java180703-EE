@@ -1,28 +1,54 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+	pageEncoding="UTF-8"%><!DOCTYPE html>
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Insert title here</title>
+<meta charset="UTF-8">
+<title></title>
+<link rel="stylesheet"
+	href="${pageContext.request.contextPath}/lib/bootstrap-3.3.7-dist/css/bootstrap.css" />
+<script type="text/javascript"
+	src="${pageContext.request.contextPath}/lib/bootstrap-3.3.7-dist/js/bootstrap.js"></script>
+<script type="text/javascript"
+	src="${pageContext.request.contextPath}/lib/jquery/jquery-1.11.1.js"></script>
 </head>
 <body>
-	<form action="${pageContext.request.contextPath}/login?method=login" method="post">
-		用户名:<input type="text" name="name" /><br /> 
-		密码:<input type="password" name="password" /><br /> 
-		验证码：<input type="text" name="checkCode" /><br>
-		<img id="codeImg" alt=""src="${pageContext.request.contextPath}/checkImg" onclick="refreshCode()"><br> 
-		<input type="submit" value="登录" />
-		<input type="reset" value="重置" />
-	</form>
-	<form action="">
-		<input type="submit" value="新用户注册"/>
-	</form>
-	<script type="text/javascript" src="lib/jquery/jquery-1.11.1.js"></script>
+	<div class="page-header" style="width: 100%; text-align: center;">
+		<h1>
+			<small>Do You Like What You See!</small>
+		</h1>
+	</div>
+	<div style="width: 100%; text-align: center;">
+		<form action="${pageContext.request.contextPath}/login?method=login"
+			method="post">
+			<div class="form-group">
+				<label for="exampleInputName1">登录名</label> <input name="name"
+					style="width: auto; margin: auto;" type="text" class="form-control"
+					id="exampleInputName1" placeholder="登陆名">
+			</div>
+			<div class="form-group">
+				<label for="exampleInputPassword1">密码</label> <input name="password"
+					style="width: auto; margin: auto;" type="text" class="form-control"
+					id="exampleInputPassword1" placeholder="密码">
+			</div>
+			<div class="form-group">
+				<label for="exampleInputPassword1">验证码</label> <input
+					name="checkCode" style="width: auto; margin: auto;"
+					name="checkCode" type="text" class="form-control"
+					id="exampleInputPassword1" placeholder="验证码"> <br /> <img
+					id="codeImg" alt=""
+					src="${pageContext.request.contextPath}/checkImg"
+					onclick="refreshCode()">
+			</div>
+			<br />
+			<button type="submit" class="btn btn-default">登陆</button>
+			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <a
+				class="btn btn-default" href="http://www.baidu.com" role="button">注册</a>
+		</form>
+	</div>
 	<script type="text/javascript">
-	function refreshCode() {
-		$("#codeImg").attr("src", "${pageContext.request.contextPath}/checkImg?"+Math.random());
-	}
+			function refreshCode() {
+				$("#codeImg").attr("src", "${pageContext.request.contextPath}/checkImg?"+Math.random());
+			}
 	</script>
 </body>
 </html>

@@ -67,8 +67,8 @@ public class BanJiServiceImpl implements IBanJiService {
 	 * 
 	 */
 	@Override
-	public PageBean<BanJi> getPageBean(int pageNo, int pageSize) {
-		PageBean<BanJi> pageBean = new PageBean<>();
+	public PageBean getPageBean(int pageNo, int pageSize) {
+		PageBean pageBean = new PageBean<>();
 		// 当前是第几页
 		pageBean.setPageNo(pageNo);
 		// 一页有多少条数据

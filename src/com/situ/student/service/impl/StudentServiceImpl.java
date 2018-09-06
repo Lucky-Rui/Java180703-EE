@@ -1,6 +1,7 @@
 package com.situ.student.service.impl;
 
 import java.util.List;
+import java.util.Map;
 
 import com.situ.student.dao.IStudentDao;
 import com.situ.student.dao.impl.StudentDaoImpl;
@@ -66,8 +67,8 @@ public class StudentServiceImpl implements IStudentService {
 	 * 
 	 */
 	@Override
-	public PageBean<Student> getPageBean(int pageNo, int pageSize) {
-		PageBean<Student> pageBean = new PageBean<>();
+	public PageBean getPageBean(int pageNo, int pageSize) {
+		PageBean pageBean = new PageBean();
 		// 当前是第几页
 		pageBean.setPageNo(pageNo);
 		// 一页有多少条数据
@@ -85,8 +86,8 @@ public class StudentServiceImpl implements IStudentService {
 		pageBean.setTotalPage(totalPage);
 		// 当前页的数据
 		int offset = (pageNo - 1) * pageSize;
-		List<Student> list = studentDao.pageList(offset, pageSize);
-		pageBean.setList(list);
+		List<Map<String, Object>> list = studentDao.pageList(offset, pageSize);
+		pageBean.setList(list);;
 
 		return pageBean;
 	}

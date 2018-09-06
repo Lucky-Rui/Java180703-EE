@@ -110,7 +110,7 @@
 				</c:if>
 				<c:if test="${pageBean.pageNo != 1}">
 					<li><a
-						href="${pageContext.request.contextPath}/banji?method=pageList&pageNo=${pageBean.pageNo - 1}&pageSize=20"
+						href="${pageContext.request.contextPath}/banji?method=pageList&pageNo=${pageBean.pageNo - 1}&pageSize=10"
 						aria-label="Previous"> <span aria-hidden="true">&laquo;</span>
 					</a></li>
 				</c:if>
@@ -122,7 +122,7 @@
 					</c:if>
 					<c:if test="${pageBean.pageNo != i}">
 						<li><a
-							href="${pageContext.request.contextPath}/banji?method=pageList&pageNo=${i}&pageSize=20">${i}</a></li>
+							href="${pageContext.request.contextPath}/banji?method=pageList&pageNo=${i}&pageSize=10">${i}</a></li>
 					</c:if>
 				</c:forEach>
 				<!--中间页码结束  -->
@@ -134,7 +134,7 @@
 				</c:if>
 				<c:if test="${pageBean.pageNo != pageBean.totalPage}">
 					<li><a
-						href="${pageContext.request.contextPath}/banji?method=pageList&pageNo=${pageBean.pageNo + 1}&pageSize=20"
+						href="${pageContext.request.contextPath}/banji?method=pageList&pageNo=${pageBean.pageNo + 1}&pageSize=10"
 						aria-label="Next"> <span aria-hidden="true">&raquo;</span>
 					</a></li>
 				</c:if>

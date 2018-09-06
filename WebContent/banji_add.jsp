@@ -64,21 +64,26 @@
 			<div class="col-md-2">
 				<div class="list-group">
 					<a href="${pageContext.request.contextPath}/banji?method=pageList"
-						class="list-group-item "> 班级列表 </a> <a href="banji_add.jsp"
-						class="list-group-item active">班级添加</a>
+						class="list-group-item "> 班级列表 
+					</a> 
+					<a href="banji_add.jsp" 
+						class="list-group-item active">班级添加
+					</a>
 				</div>
 			</div>
 			<!--左边部分（链接列表组）结束-->
 			<!--右边部分（form表单）开始-->
 			<div class="col-md-10">
-				<form
-					action="${pageContext.request.contextPath}/student?method=insert"
+				<form style="width: 100%; text-align: center;"
+					action="${pageContext.request.contextPath}/banji?method=insert"
 					method="post">
 					<div class="form-group">
-						<label for="name">班级名称</label> <input type="text"
-							class="form-control" id="name" placeholder="例如：Java1809">
+						<label for="name">班级名称</label> 
+					<input type="text" name="name"
+							style="width: auto; margin: auto;" class="form-control" id="name" placeholder="例如：Java1809">
 					</div>
 					<button type="submit" class="btn btn-default">添加</button>
+					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 					<button type="reset" class="btn btn-default">重置</button>
 				</form>
 			</div>

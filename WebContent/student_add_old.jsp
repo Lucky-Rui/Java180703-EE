@@ -9,9 +9,11 @@
 <body>
 	<form action="<%=request.getContextPath() %>/student?method=insert"
 		method="post">
-		姓名：<input type="text" name="name" /><br> 年龄：<input type="text"
-			name="age" /><br> 性别：<input type="text" name="gender" /><br>
-		<input type="submit" value="添加" /> <input type="reset" value="重置" />
+		姓名：<input type="text" name="name" /><br> 
+		年龄：<input type="text" name="age" /><br>
+		性别：<input type="text" name="gender" /><br>
+		<input type="submit" value="添加" /> 
+		<input type="reset" value="重置" />
 	</form>
 </body>
 </html>

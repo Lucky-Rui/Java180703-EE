@@ -1,6 +1,7 @@
 package com.situ.student.service;
 
 import java.util.List;
+import java.util.Map;
 
 import com.situ.student.entity.PageBean;
 import com.situ.student.entity.Student;
@@ -59,7 +60,7 @@ public interface IStudentService {
 	 * @param pageSize
 	 * @return
 	 */
-	PageBean<Student> getPageBean(int pageNo, int pageSize);
+	PageBean getPageBean(int pageNo, int pageSize);
 
 	/**
 	 * 批量删除

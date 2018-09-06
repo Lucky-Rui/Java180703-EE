@@ -30,19 +30,26 @@
 				id="bs-example-navbar-collapse-1">
 				<ul class="nav navbar-nav">
 					<li class="active"><a
-						href="${pageContext.request.contextPath}/student?method=pageList"><span
-							class="glyphicon glyphicon-home" aria-hidden="true"></span>&nbsp;&nbsp;&nbsp;学生管理
+						href="${pageContext.request.contextPath}/student?method=pageList">
+							<span class="glyphicon glyphicon-home" aria-hidden="true"></span>
+							&nbsp;&nbsp;&nbsp;学生管理
 					</a></li>
 					<li><a
-						href="${pageContext.request.contextPath}/banji?method=pageList"><span
-							class="glyphicon glyphicon-home" aria-hidden="true"></span>&nbsp;&nbsp;&nbsp;班级管理</a></li>
-					<li><a href="#"><span class="glyphicon glyphicon-home"
-							aria-hidden="true"></span>&nbsp;&nbsp;&nbsp;课程管理</a></li>
-					<li><a href="#"><span class="glyphicon glyphicon-home"
-							aria-hidden="true"></span>&nbsp;&nbsp;&nbsp;教务管理</a></li>
+						href="${pageContext.request.contextPath}/banji?method=pageList">
+							<span class="glyphicon glyphicon-home" aria-hidden="true"></span>
+							&nbsp;&nbsp;&nbsp;班级管理
+					</a></li>
+					<li><a href="#"> <span class="glyphicon glyphicon-home"
+							aria-hidden="true"></span> &nbsp;&nbsp;&nbsp;课程管理
+					</a></li>
+					<li><a href="#"> <span class="glyphicon glyphicon-home"
+							aria-hidden="true"></span> &nbsp;&nbsp;&nbsp;教务管理
+					</a></li>
 					<li><a
-						href="${pageContext.request.contextPath}/online_user_list.jsp"><span
-							class="glyphicon glyphicon-home" aria-hidden="true"></span>&nbsp;&nbsp;&nbsp;在线人数</a></li>
+						href="${pageContext.request.contextPath}/online_user_list.jsp">
+							<span class="glyphicon glyphicon-home" aria-hidden="true"></span>
+							&nbsp;&nbsp;&nbsp;在线人数
+					</a></li>
 				</ul>
 				<ul class="nav navbar-nav navbar-right">
 					<li><a
@@ -63,10 +70,8 @@
 			<!--左边部分（链接列表组）开始-->
 			<div class="col-md-2">
 				<div class="list-group">
-					<a
-						href="${pageContext.request.contextPath}/student?method=pageList"
-						class="list-group-item active"> 学生列表 </a> <a
-						href="student_add.jsp" class="list-group-item">学生添加</a>
+					<a href="${pageContext.request.contextPath}/student?method=pageList" class="list-group-item active"> 学生列表 </a> 
+					<a href="${pageContext.request.contextPath}/student?method=getAddBanJiPage" class="list-group-item">学生添加</a>
 				</div>
 			</div>
 			<!--左边部分（链接列表组）结束-->
@@ -74,27 +79,38 @@
 			<div class="col-md-10">
 				<table class="table table-hover">
 					<tr>
-						<th><input type="checkbox" id="selectAlls"
-							onclick="selectAll()" />全选</th>
+						<th>
+							<input type="checkbox" id="selectAlls" onclick="selectAll()" />
+							全选
+						</th>
 						<th>ID</th>
 						<th>姓名</th>
 						<th>年龄</th>
 						<th>性别</th>
-						<td>修改</td>
-						<td>删除</td>
+						<th>班级</th>
+						<th>修改</th>
+						<th>删除</th>
+						
 					</tr>
-					<c:forEach items="${pageBean.list}" var="student">
+					<c:forEach items="${pageBean.list}" var="map">
 						<tr>
-							<td><input type="checkbox" name="selectIds"
-								value="${student.id}" /></td>
-							<td>${student.id}</td>
-							<td>${student.name}</td>
-							<td>${student.age}</td>
-							<td>${student.gender}</td>
-							<td><a
-								href="${pageContext.request.contextPath}/student?method=toUpdate&id=${student.id}">修改</a></td>
-							<td><a
-								href="javascript:deleteById(${student.id},${pageBean.pageNo})">删除</a>
+							<td>
+								<input type="checkbox" name="selectIds" value="${map['s_id']}" />
+							</td>
+							<td>${map['s_id']}</td>
+							<td>${map['s_name']}</td>
+							<td>${map['s_age']}</td>
+							<td>${map['s_gender']}</td>
+							<td>${map['b_name']}</td>
+							<td>
+								<a href="${pageContext.request.contextPath}/student?method=toUpdate&id=${map['s_id']}">
+									修改
+								</a>
+							</td>
+							<td>
+								<a href="javascript:deleteById(${map['s_id']},${pageBean.pageNo})">
+									删除
+								</a>
 							</td>
 						</tr>
 					</c:forEach>

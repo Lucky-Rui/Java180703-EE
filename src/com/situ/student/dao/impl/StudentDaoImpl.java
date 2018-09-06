@@ -5,12 +5,14 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
-import java.util.concurrent.CountDownLatch;
+import java.util.Map;
 
 import com.situ.student.dao.IStudentDao;
 import com.situ.student.entity.Student;
 import com.situ.student.util.JDBCUtil;
+import com.situ.student.util.ModelConvertUtil;
 
 /**
  * 用JDBC的方式实现数据的增删改查
@@ -26,11 +28,12 @@ public class StudentDaoImpl implements IStudentDao {
 		int count = 0;
 		try {
 			connection = JDBCUtil.getConnection();
-			String sql = "insert into student(name,age,gender) values(?,?,?)";
+			String sql = "insert into student(name,age,gender,banji_id) values(?,?,?,?)";
 			preparedStatement = connection.prepareStatement(sql);
 			preparedStatement.setString(1, student.getName());
 			preparedStatement.setInt(2, student.getAge());
 			preparedStatement.setString(3, student.getGender());
+			preparedStatement.setInt(4, student.getBanjiId());
 			count = preparedStatement.executeUpdate();
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -211,40 +214,40 @@ public class StudentDaoImpl implements IStudentDao {
 	}
 
 	/**
-	 * 
+	 * 分页展示
 	 */
-	@Override
-	public List<Student> pageList(int offset, int pageSize) {
-		Connection connection = null;
-		PreparedStatement preparedStatement = null;
-		ResultSet resultSet = null;
-		List<Student> list = new ArrayList<>();
-		try {
-			connection = JDBCUtil.getConnection();
-			// 分页sql语句：
-			String sql = "SELECT id,name,age,gender FROM student limit ?,?";
-			// 预编译sql
-			preparedStatement = connection.prepareStatement(sql);
-			preparedStatement.setInt(1, offset);
-			preparedStatement.setInt(2, pageSize);
-			System.out.println(preparedStatement);
-			resultSet = preparedStatement.executeQuery();
-			while (resultSet.next()) {
-				Integer id = resultSet.getInt("id");
-				String name = resultSet.getString("name");
-				Integer age = resultSet.getInt("age");
-				String gender = resultSet.getString("gender");
-				Student student = new Student(id, name, age, gender);
-				list.add(student);
-			}
-		} catch (SQLException e) {
-			e.printStackTrace();
-		} finally {
-			JDBCUtil.close(connection, preparedStatement, resultSet);
-		}
 
-		return list;
-	}
+	// @Override
+	// public List<Student> pageList2(int offset, int pageSize) {
+	// Connection connection = null;
+	// PreparedStatement preparedStatement = null;
+	// ResultSet resultSet = null;
+	// List<Student> list = new ArrayList<>();
+	// try {
+	// connection = JDBCUtil.getConnection(); // 分页sql语句：
+	// String sql = "SELECT id,name,age,gender FROM student limit ?,?"; //
+	// 预编译sql
+	// preparedStatement = connection.prepareStatement(sql);
+	// preparedStatement.setInt(1, offset);
+	// preparedStatement.setInt(2, pageSize);
+	// System.out.println(preparedStatement);
+	// resultSet = preparedStatement.executeQuery();
+	// while (resultSet.next()) {
+	// Integer id = resultSet.getInt("id");
+	// String name = resultSet.getString("name");
+	// Integer age = resultSet.getInt("age");
+	// String gender = resultSet.getString("gender");
+	// Student student = new Student(id, name, age, gender);
+	// list.add(student);
+	// }
+	// } catch (SQLException e) {
+	// e.printStackTrace();
+	// } finally {
+	// JDBCUtil.close(connection, preparedStatement, resultSet);
+	// }
+	//
+	// return list;
+	// }
 
 	/**
 	 * 批量删除
@@ -270,5 +273,44 @@ public class StudentDaoImpl implements IStudentDao {
 			JDBCUtil.close(connection, preparedStatement, null);
 		}
 		return count;
+	}
+
+	@Override
+	public List<Map<String, Object>> pageList(int offset, int pageSize) {
+		Connection connection = null;
+		PreparedStatement preparedStatement = null;
+		ResultSet resultSet = null;
+		List<Map<String, Object>> list = new ArrayList<>();
+		try {
+			connection = JDBCUtil.getConnection();
+			String sql = "SELECT s.id AS s_id,s.name AS s_name,s.age AS s_age,s.gender AS s_gender,b.name AS b_name FROM student AS s INNER JOIN banji AS b ON s.banji_id = b.id limit ?,?";
+			// 预编译sql
+			preparedStatement = connection.prepareStatement(sql);
+			preparedStatement.setInt(1, offset);
+			preparedStatement.setInt(2, pageSize);
+			System.out.println(preparedStatement);
+			resultSet = preparedStatement.executeQuery();
+			list = ModelConvertUtil.convertList(resultSet);
+			// while (resultSet.next()) {
+			// Integer id = resultSet.getInt("s_id");
+			// String name = resultSet.getString("s_name");
+			// Integer age = resultSet.getInt("s_age");
+			// String gender = resultSet.getString("s_gender");
+			// String banjiName = resultSet.getString("b_name");
+			// Student student = new Student();
+			// Map<String, Object> map = new HashMap<>();
+			// // Map是一个key-value结构，就相当于实体类里面：student.age=23 属性-值
+			// // 借助Map结构封装不同表里面的数据
+			// // s_id 1
+			// // s_name 张三
+			// // b_name Java180703班
+			// list.add(map);
+			// }
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			JDBCUtil.close(connection, preparedStatement, resultSet);
+		}
+		return list;
 	}
 }

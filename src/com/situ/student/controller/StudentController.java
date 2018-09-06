@@ -10,13 +10,18 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.situ.student.dao.IBanJiDao;
+import com.situ.student.entity.BanJi;
 import com.situ.student.entity.PageBean;
 import com.situ.student.entity.Student;
+import com.situ.student.service.IBanJiService;
 import com.situ.student.service.IStudentService;
+import com.situ.student.service.impl.BanJiServiceImpl;
 import com.situ.student.service.impl.StudentServiceImpl;
 
 public class StudentController extends HttpServlet {
 	private IStudentService studentService = new StudentServiceImpl();
+	private IBanJiService banjiService = new BanJiServiceImpl();
 
 	@Override
 	protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -59,10 +64,27 @@ public class StudentController extends HttpServlet {
 		case "deleteAll":
 			deleteAll(req, resp);
 			break;
+		case "getAddBanJiPage":
+			getAddBanJiPage(req, resp);
+			break;
 		default:
 			break;
 		}
 
+	}
+
+	/**
+	 * 通过访问这个Servlet，查出所有班级信息，放到域对象中，转发到student_add.jsp
+	 * 
+	 * @param req
+	 * @param resp
+	 * @throws IOException 
+	 * @throws ServletException 
+	 */
+	private void getAddBanJiPage(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		List<BanJi> list = banjiService.list();
+		req.setAttribute("list", list);
+		req.getRequestDispatcher("/student_add.jsp").forward(req, resp);
 	}
 
 	private void deleteAll(HttpServletRequest req, HttpServletResponse resp) throws IOException {
@@ -73,7 +95,6 @@ public class StudentController extends HttpServlet {
 	}
 
 	private void pageList(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		// http://localhost:8080/Java180703(Java%20EE)/student?method=pageList&pageNo=2&pageSize=3
 		// 1、接收请求参数
 		String pageNoStr = req.getParameter("pageNo");
 		if (pageNoStr == null || pageNoStr.equals("")) {
@@ -122,7 +143,8 @@ public class StudentController extends HttpServlet {
 		String name = req.getParameter("name");
 		Integer age = Integer.parseInt(req.getParameter("age"));
 		String gender = req.getParameter("gender");
-		Student student = new Student(name, age, gender);
+		int banjiId = Integer.parseInt(req.getParameter("banjiId"));
+		Student student = new Student(name, age, gender, banjiId);
 		// 2、调用servlet处理
 		boolean result = studentService.insert(student);
 		System.out.println(result ? "成功" : "失败");

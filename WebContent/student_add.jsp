@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -71,22 +72,24 @@
 			<!--左边部分（链接列表组）结束-->
 			<!--右边部分（form表单）开始-->
 			<div class="col-md-10">
-				<form
+				<form style="width: 100%; text-align: center;"
 					action="${pageContext.request.contextPath}/student?method=insert"
 					method="post">
 					<div class="form-group">
-						<label for="name">姓名</label> <input type="text"
-							class="form-control" id="aname" placeholder="例如：张三">
+						<label for="name">学生姓名</label> <input type="text" name="name"
+							style="width: auto; margin: auto;" class="form-control" id="aname" placeholder="例如：张三">
 					</div>
 					<div class="form-group">
-						<label for="age">年龄</label> <input type="text"
-							class="form-control" id="age" placeholder="例如：10">
+						<label for="age">学生年龄</label> <input type="text" name="age"
+							style="width: auto; margin: auto;" class="form-control" id="age" placeholder="例如：10">
 					</div>
 					<div class="form-group">
-						<label for="gender">性别</label> <input type="text"
-							class="form-control" id="gender" placeholder="例如：男/女">
+						<label for="gender">学生性别</label> <input type="text" name="gender"
+							style="width: auto; margin: auto;" class="form-control" id="gender" placeholder="例如：男/女">
 					</div>
-					<button type="submit" class="btn btn-default">添加</button>
+					<br/>
+					<button type="submit" class="btn btn-default">保存</button>
+					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 					<button type="reset" class="btn btn-default">重置</button>
 				</form>
 			</div>

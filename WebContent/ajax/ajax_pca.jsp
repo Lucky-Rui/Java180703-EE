@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+	pageEncoding="UTF-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -7,22 +7,20 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<script src="${pageContext.request.contextPath}/lib/jquery/jquery-1.11.1.js" type="text/javascript" charset="utf-8"></script>
+	<script
+		src="${pageContext.request.contextPath}/lib/jquery/jquery-1.11.1.js"
+		type="text/javascript" charset="utf-8"></script>
 	省：
 	<select id="province" onchange="selectCitys(this)">
 		<option>--------请选择--------</option>
-	</select>
-	
-	
-	市：
+	</select> 市：
 	<select id="city" onchange="selectAreas(this)">
 		<option>--------请选择--------</option>
-	</select>
-	区:
+	</select> 区:
 	<select id="area">
 		<option>--------请选择--------</option>
 	</select>
-	
+
 	<script type="text/javascript">
 		$(function() {
 			$.post(

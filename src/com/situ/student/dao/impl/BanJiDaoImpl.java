@@ -47,7 +47,7 @@ public class BanJiDaoImpl implements IBanJiDao {
 		int count = 0;
 		try {
 			connection = JDBCUtil.getConnection();
-			String sql = "insert into banji(name) values ?";
+			String sql = "insert into banji(name) values (?)";
 			preparedStatement = connection.prepareStatement(sql);
 			preparedStatement.setString(1, banJi.getName());
 			System.out.println(preparedStatement);

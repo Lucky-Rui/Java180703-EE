@@ -1,6 +1,7 @@
 package com.situ.student.dao;
 
 import java.util.List;
+import java.util.Map;
 
 import com.situ.student.entity.Student;
 
@@ -64,7 +65,7 @@ public interface IStudentDao {
 	 * @param pageSize
 	 * @return
 	 */
-	List<Student> pageList(int offset, int pageSize);
+	List<Map<String, Object>> pageList(int offset, int pageSize);
 
 	/**
 	 * 
