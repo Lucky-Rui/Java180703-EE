@@ -1,4 +1,4 @@
-package com.situ.day036.ajax;
+package com.situ.day037.ajax;
 
 import java.io.IOException;
 
@@ -33,4 +33,5 @@ public class AjaxServlet1 extends HttpServlet {
 		// {"name":"李四", "age": 21}
 		resp.getWriter().write("{\"name\":\"李四Post\", \"age\": 21}");
 	}
+	
 }

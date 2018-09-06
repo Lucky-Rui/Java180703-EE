@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import javax.swing.text.AbstractDocument.BranchElement;
 
 import com.situ.student.entity.User;
 import com.situ.student.service.IUserService;
@@ -31,9 +32,22 @@ public class LoginController extends HttpServlet {
 		case "logout":
 			logout(req, resp);
 			break;
+		case "register":
+			register(req,resp);
+			break;
 		default:
 			break;
 		}
+	}
+
+	/**
+	 * 注册操作
+	 * @param req
+	 * @param resp
+	 */
+	private void register(HttpServletRequest req, HttpServletResponse resp) {
+		// TODO Auto-generated method stub
+		
 	}
 
 	/**

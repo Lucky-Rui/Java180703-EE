@@ -9,11 +9,11 @@
 <body>
 	<!-- JSP脚本 -->
 	<%-- <%java代码 %> --%>
-    
+
 	<!-- JSP表达式 :在Html页面上输出-->
 	<%-- <%=变量或表达式%> --%>
-    
-    
+
+
 	<table border="0">
 		<%
 			for (int i = 1; i <= 9; i++) { 
@@ -22,8 +22,7 @@
 			<%
 				for (int j = 1; j <= i; j++) { 
 			%>
-			<td style="border: 1px solid black; padding: 2px">
-				<%=j%>*<%=i%>=<%=i * j%>
+			<td style="border: 1px solid black; padding: 2px"><%=j%>*<%=i%>=<%=i * j%>
 			</td>
 			<%
 				}

@@ -41,7 +41,7 @@ public class LoginFilter implements Filter {
 		if (lastIndex != -1) {
 			extension = servletPath.substring(lastIndex);// js css png
 		}
-		if ("/login.jsp".equals(servletPath) // 放行
+		/*if ("/login.jsp".equals(servletPath) // 放行
 				|| "/checkImg".equals(servletPath) 
 				|| "/login".equals(servletPath) 
 				|| ".js".equalsIgnoreCase(extension)
@@ -59,8 +59,8 @@ public class LoginFilter implements Filter {
 			}
 			// 执行下一个过滤器或放行（访问servlet）
 			chain.doFilter(request, response);
-		}
-		//chain.doFilter(request, response);
+		}*/
+		chain.doFilter(request, response);
 	}
 
 	public void destroy() {

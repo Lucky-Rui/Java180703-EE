@@ -236,10 +236,20 @@
     <description></description>
     <display-name>AjaxServlet1</display-name>
     <servlet-name>AjaxServlet1</servlet-name>
-    <servlet-class>com.situ.day036.ajax.AjaxServlet1</servlet-class>
+    <servlet-class>com.situ.day037.ajax.AjaxServlet1</servlet-class>
   </servlet>
   <servlet-mapping>
     <servlet-name>AjaxServlet1</servlet-name>
     <url-pattern>/ajax1</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>SelectAreaServlet</display-name>
+    <servlet-name>SelectAreaServlet</servlet-name>
+    <servlet-class>com.situ.day038.省市区三级联动.ajax.SelectAreaServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>SelectAreaServlet</servlet-name>
+    <url-pattern>/selectArea</url-pattern>
   </servlet-mapping>
 </web-app>
