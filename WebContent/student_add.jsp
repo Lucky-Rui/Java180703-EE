@@ -87,6 +87,15 @@
 						<label for="gender">学生性别</label> <input type="text" name="gender"
 							style="width: auto; margin: auto;" class="form-control" id="gender" placeholder="例如：男/女">
 					</div>
+					<div class="form-group">
+						<label for="gender">学生班级</label>
+						<select name="banjiId"  class="form-control" style="width: auto; margin: auto;">
+							<option>---------请选择班级---------</option>
+							<c:forEach items="${list}" var="banji">
+								<option value="${banji.id}">${banji.name}</option>
+							</c:forEach>
+						</select>
+					</div>
 					<br/>
 					<button type="submit" class="btn btn-default">保存</button>
 					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;

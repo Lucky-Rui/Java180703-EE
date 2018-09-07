@@ -135,14 +135,15 @@ public class StudentDaoImpl implements IStudentDao {
 		PreparedStatement preparedStatement = null;
 		int count = 0;
 		try {
-			String sql = "update student set name = ?, age = ?,gender = ? where id= ?";
+			String sql = "update student set name = ?, age = ?,gender = ? ,banji_id=? where id= ?";
 			connection = JDBCUtil.getConnection();
 			preparedStatement = connection.prepareStatement(sql);
 			// 设置SQL语句的值
 			preparedStatement.setString(1, student.getName());
 			preparedStatement.setInt(2, student.getAge());
 			preparedStatement.setString(3, student.getGender());
-			preparedStatement.setInt(4, student.getId());
+			preparedStatement.setInt(4, student.getBanjiId());
+			preparedStatement.setInt(5, student.getId());
 			// 处理结果
 			count = preparedStatement.executeUpdate();
 			if (count == 1) {
@@ -176,7 +177,8 @@ public class StudentDaoImpl implements IStudentDao {
 				String name = resultSet.getString("name");
 				Integer age = resultSet.getInt("age");
 				String gender = resultSet.getString("gender");
-				student = new Student(stuId, name, age, gender);
+				Integer banjiId = resultSet.getInt("banji_id");
+				student = new Student(stuId, name, age, gender, banjiId);
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();

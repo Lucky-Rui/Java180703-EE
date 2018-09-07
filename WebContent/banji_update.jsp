@@ -1,4 +1,3 @@
-<%@page import="com.situ.student.entity.PageBean"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
@@ -77,7 +76,6 @@
 			</div>
 			<!--左边部分（链接列表组）结束-->
 			<!--右边部分（form表单）开始-->
-			<%PageBean pageBean = (PageBean) request.getAttribute("pageBean"); %>
 			<div class="col-md-10">
 				<form style="width: 100%; text-align: center;"
 					action="${pageContext.request.contextPath}/banji?method=update"
@@ -88,7 +86,7 @@
 					<input type="text" name="name" 
 						style="width: auto; margin: auto;" class="form-control" id="name" value="${banji.name}">
 					</div>
-					<button type="submit" class="btn btn-default">添加</button>
+					<button type="submit" class="btn btn-default">保存</button>
 					<button type="reset" class="btn btn-default">重置</button>
 				</form>
 			</div>

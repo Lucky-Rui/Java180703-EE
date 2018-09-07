@@ -120,7 +120,8 @@ public class StudentController extends HttpServlet {
 		String name = req.getParameter("name");
 		Integer age = Integer.parseInt(req.getParameter("age"));
 		String gender = req.getParameter("gender");
-		Student student = new Student(id, name, age, gender);
+		Integer banjiId = Integer.parseInt(req.getParameter("banjiId"));
+		Student student = new Student(id, name, age, gender,banjiId);
 		// 2、调用service处理
 		boolean result = studentService.updateStudent(student);
 		System.out.println(result ? "成功" : "失败");
@@ -133,7 +134,9 @@ public class StudentController extends HttpServlet {
 		// 根据id查找出要修改的学生对象
 		Integer id = Integer.parseInt(req.getParameter("id"));
 		Student student = studentService.findById(id);
+		List<BanJi> list = banjiService.list();
 		// 转发到student_update.jsp页面
+		req.setAttribute("list", list);
 		req.setAttribute("student", student);
 		req.getRequestDispatcher("/student_update.jsp").forward(req, resp);
 	}
@@ -156,7 +159,7 @@ public class StudentController extends HttpServlet {
 	public void deleteById(HttpServletRequest req, HttpServletResponse resp) throws IOException {
 		// 得到第几页
 		Integer pageNo = Integer.parseInt(req.getParameter("pageNo"));
-		System.out.println(pageNo);
+		//System.out.println(pageNo);
 		// 得到页面上选中的Id
 		Integer id = Integer.parseInt(req.getParameter("id"));
 		// 删除处理

@@ -143,18 +143,21 @@
 		</nav>
 	</div>
 	<!--选择页结束 -->
-	<script type="text/javascript"
-		src="${pageContext.request.contextPath}/lib/jquery/jquery-1.11.1.js"></script>
-	<script type="text/javascript"
-		src="${pageContext.request.contextPath}/lib/bootstrap-3.3.7-dist/js/bootstrap.js"></script>
+	<script type="text/javascript" src="${pageContext.request.contextPath}/lib/jquery/jquery-1.11.1.js"></script>
+	<script type="text/javascript" src="${pageContext.request.contextPath}/lib/bootstrap-3.3.7-dist/js/bootstrap.js"></script>
+	<script src="${pageContext.request.contextPath}/lib/layer/layer.js" type="text/javascript" charset="utf-8"></script>
+	<script src="${pageContext.request.contextPath}/js/mylayer.js" type="text/javascript" charset="utf-8"></script>
 	<script type="text/javascript">
-			function deleteById(id,pageNo) {
+			/* function deleteById(id,pageNo) {
 				//用户点了确定，confirm返回的是true，
 				//用户点了取消，confirm返回的是false，
 				var isDel = confirm("您确认要删除这个信息吗？");
 				if (isDel) {
 					location.href = "${pageContext.request.contextPath}/banji?method=deleteById&id="+ id+"&pageNo="+pageNo;
 				}
+			} */
+			function deleteById(id,pageNo){
+				mylayer.confirm("你确定要删除吗？","${pageContext.request.contextPath}/banji?method=deleteById&id="+ id+"&pageNo="+pageNo);
 			}
 			
 			function selectAll(){

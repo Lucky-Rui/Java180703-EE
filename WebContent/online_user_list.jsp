@@ -72,7 +72,7 @@
 						<th>登录的用户:</th>
 						<th>登录的用户的密码:</th>
 					</tr>
-					<c:forEach items="${applicationScope.onLineUserList}" var="user">
+					<c:forEach items="${onLineUserList}" var="user">
 						<tr>
 							<td>${user.name}</td>
 							<td>${user.password}</td>

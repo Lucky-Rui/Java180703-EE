@@ -1,6 +1,6 @@
-<%@page import="com.situ.student.entity.PageBean"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -76,7 +76,6 @@
 			</div>
 			<!--左边部分（链接列表组）结束-->
 			<!--右边部分（form表单）开始-->
-			<%PageBean pageBean = (PageBean) request.getAttribute("pageBean"); %>
 			<div class="col-md-10">
 				<form style="width: 100%; text-align: center;"
 					action="${pageContext.request.contextPath}/student?method=update"
@@ -94,6 +93,21 @@
 						<label for="gender">学生性别</label> <input type="text" name="gender"
 							style="width: auto; margin: auto;" class="form-control" id="gender" value="${student.gender}">
 					</div>
+					<div class="form-group">
+						<label for="gender">学生班级</label>
+						<select name="banjiId"  class="form-control" style="width: auto; margin: auto;">
+							<option>---------请选择班级---------</option>
+							<c:forEach items="${list}" var="banji">
+								<c:if test="${student.banjiId == banji.id}">
+									<option value="${banji.id}" selected="selected">${banji.name}</option>
+								</c:if>
+								<c:if test="${student.banjiId != banji.id}">
+									<option value="${banji.id}" >${banji.name}</option>
+								</c:if>
+							</c:forEach>
+						</select>
+					</div>
+					<br/>
 					<button type="submit" class="btn btn-default">保存</button>
 					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 					<button type="reset" class="btn btn-default">重置</button>

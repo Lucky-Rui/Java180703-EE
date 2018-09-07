@@ -41,12 +41,11 @@ public class LoginController extends HttpServlet {
 	}
 
 	/**
-	 * 注册操作
+	 * 登陆操作
 	 * @param req
 	 * @param resp
 	 */
 	private void register(HttpServletRequest req, HttpServletResponse resp) {
-		// TODO Auto-generated method stub
 		
 	}
 
@@ -81,7 +80,7 @@ public class LoginController extends HttpServlet {
 	 * @throws IOException
 	 */
 	public void login(HttpServletRequest req, HttpServletResponse resp) throws IOException {
-		// 1、获取验证码
+		// 1、获取验证码，判断验证码有没有填写错误
 		String checkCode = req.getParameter("checkCode");
 		String checkCodeSession = (String) req.getSession().getAttribute("checkCodeSession");
 		if (null == checkCode || "".equals(checkCode) || !checkCode.equalsIgnoreCase(checkCodeSession)) {
