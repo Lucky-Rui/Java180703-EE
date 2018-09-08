@@ -3,7 +3,9 @@ package com.situ.student.controller;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -14,6 +16,8 @@ import com.situ.student.entity.BanJi;
 import com.situ.student.entity.PageBean;
 import com.situ.student.service.IBanJiService;
 import com.situ.student.service.impl.BanJiServiceImpl;
+
+import net.sf.json.JSONObject;
 
 public class BanJiController extends HttpServlet {
 	private IBanJiService banjiService = new BanJiServiceImpl();
@@ -47,9 +51,24 @@ public class BanJiController extends HttpServlet {
 		case "deleteAll":
 			deleteAll(req, resp);
 			break;
+		case "checkName":
+			checkName(req,resp);
+			break;
 		default:
 			break;
 		}
+	}
+
+	private void checkName(HttpServletRequest req, HttpServletResponse resp) throws IOException {
+		String name = req.getParameter("name");
+		boolean isExist =banjiService.checkName(name);
+		// {"isExist":isExist}
+		Map<String, Object> map = new HashMap<>();
+		map.put("isExist", isExist);
+		JSONObject jsonObject = JSONObject.fromObject(map);
+		resp.setContentType("text/html;charset=utf-8");
+		// resp.getWriter().write("{\"isExist\":"+isExist+"}");
+		resp.getWriter().write(jsonObject.toString());
 	}
 
 	private void deleteAll(HttpServletRequest req, HttpServletResponse resp) throws IOException {

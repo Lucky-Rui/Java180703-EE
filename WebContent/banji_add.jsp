@@ -64,11 +64,8 @@
 			<div class="col-md-2">
 				<div class="list-group">
 					<a href="${pageContext.request.contextPath}/banji?method=pageList"
-						class="list-group-item "> 班级列表 
-					</a> 
-					<a href="banji_add.jsp" 
-						class="list-group-item active">班级添加
-					</a>
+						class="list-group-item "> 班级列表 </a> <a href="banji_add.jsp"
+						class="list-group-item active">班级添加 </a>
 				</div>
 			</div>
 			<!--左边部分（链接列表组）结束-->
@@ -79,8 +76,9 @@
 					method="post">
 					<div class="form-group">
 						<label for="name">班级名称</label> 
-					<input type="text" name="name"
-							style="width: auto; margin: auto;" class="form-control" id="name" placeholder="例如：Java1809">
+						<input type="text" name="name" id="name" onblur="checkName()"
+							style="width: auto; margin: auto;" class="form-control" 
+							placeholder="例如：Java1809">
 					</div>
 					<button type="submit" class="btn btn-default">添加</button>
 					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
@@ -96,5 +94,30 @@
 		src="${pageContext.request.contextPath}/lib/jquery/jquery-1.11.1.js"></script>
 	<script type="text/javascript"
 		src="${pageContext.request.contextPath}/lib/bootstrap-3.3.7-dist/js/bootstrap.js"></script>
+	<script src="${pageContext.request.contextPath}/lib/layer/layer.js"
+		type="text/javascript" charset="utf-8"></script>
+	<script src="${pageContext.request.contextPath}/js/mylayer.js"
+		type="text/javascript" charset="utf-8"></script>
+	<script type="text/javascript">
+		function checkName(){
+			var name = document.getElementById("name").value;
+			//ajax请求验证这个用户名
+			$.post(
+				"${pageContext.request.contextPath}/banji?method=checkName",
+				{"name":name},
+				function(data) {
+					//{"isExist":isExist}
+					if (data.isExist){
+						//警告
+						mylayer.errorAlert("该班级已经存在，请使用其它班级名称");
+					} else {
+						//正确
+						mylayer.success("该班级名可以使用");
+					}
+				},
+				"json"
+			);
+		}
+	</script>
 </body>
 </html>

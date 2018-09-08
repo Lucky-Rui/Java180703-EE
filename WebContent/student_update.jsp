@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -67,10 +67,9 @@
 				<div class="list-group">
 					<a
 						href="${pageContext.request.contextPath}/student?method=pageList"
-						class="list-group-item "> 学生列表 </a> 
-					<a href="${pageContext.request.contextPath}/student?method=getAddBanJiPage"
-						class="list-group-item ">学生添加</a>
-					<a href="#"
+						class="list-group-item "> 学生列表 </a> <a
+						href="${pageContext.request.contextPath}/student?method=getAddBanJiPage"
+						class="list-group-item ">学生添加</a> <a href="#"
 						class="list-group-item active">学生修改</a>
 				</div>
 			</div>
@@ -80,34 +79,37 @@
 				<form style="width: 100%; text-align: center;"
 					action="${pageContext.request.contextPath}/student?method=update"
 					method="post">
-						<input type="hidden" name="id" value="${student.id}" /> 
+					<input type="hidden" name="id" value="${student.id}" />
 					<div class="form-group">
-						<label for="name">学生姓名</label> <input type="text"  name="name"
-							style="width: auto; margin: auto;" class="form-control" id="name" value="${student.name}">
+						<label for="name">学生姓名</label> <input type="text" name="name"
+							style="width: auto; margin: auto;" class="form-control" id="name"
+							value="${student.name}">
 					</div>
 					<div class="form-group">
 						<label for="age">学生年龄</label> <input type="text" name="age"
-							style="width: auto; margin: auto;" class="form-control" id="age" value="${student.age}">
+							style="width: auto; margin: auto;" class="form-control" id="age"
+							value="${student.age}">
 					</div>
 					<div class="form-group">
 						<label for="gender">学生性别</label> <input type="text" name="gender"
-							style="width: auto; margin: auto;" class="form-control" id="gender" value="${student.gender}">
+							style="width: auto; margin: auto;" class="form-control"
+							id="gender" value="${student.gender}">
 					</div>
 					<div class="form-group">
-						<label for="gender">学生班级</label>
-						<select name="banjiId"  class="form-control" style="width: auto; margin: auto;">
+						<label for="gender">学生班级</label> <select name="banjiId"
+							class="form-control" style="width: auto; margin: auto;">
 							<option>---------请选择班级---------</option>
 							<c:forEach items="${list}" var="banji">
 								<c:if test="${student.banjiId == banji.id}">
 									<option value="${banji.id}" selected="selected">${banji.name}</option>
 								</c:if>
 								<c:if test="${student.banjiId != banji.id}">
-									<option value="${banji.id}" >${banji.name}</option>
+									<option value="${banji.id}">${banji.name}</option>
 								</c:if>
 							</c:forEach>
 						</select>
 					</div>
-					<br/>
+					<br />
 					<button type="submit" class="btn btn-default">保存</button>
 					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 					<button type="reset" class="btn btn-default">重置</button>

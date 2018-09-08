@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -77,26 +77,29 @@
 					method="post">
 					<div class="form-group">
 						<label for="name">学生姓名</label> <input type="text" name="name"
-							style="width: auto; margin: auto;" class="form-control" id="aname" placeholder="例如：张三">
+							style="width: auto; margin: auto;" class="form-control"
+							id="aname" placeholder="例如：张三">
 					</div>
 					<div class="form-group">
 						<label for="age">学生年龄</label> <input type="text" name="age"
-							style="width: auto; margin: auto;" class="form-control" id="age" placeholder="例如：10">
+							style="width: auto; margin: auto;" class="form-control" id="age"
+							placeholder="例如：10">
 					</div>
 					<div class="form-group">
 						<label for="gender">学生性别</label> <input type="text" name="gender"
-							style="width: auto; margin: auto;" class="form-control" id="gender" placeholder="例如：男/女">
+							style="width: auto; margin: auto;" class="form-control"
+							id="gender" placeholder="例如：男/女">
 					</div>
 					<div class="form-group">
-						<label for="gender">学生班级</label>
-						<select name="banjiId"  class="form-control" style="width: auto; margin: auto;">
+						<label for="gender">学生班级</label> <select name="banjiId"
+							class="form-control" style="width: auto; margin: auto;">
 							<option>---------请选择班级---------</option>
 							<c:forEach items="${list}" var="banji">
 								<option value="${banji.id}">${banji.name}</option>
 							</c:forEach>
 						</select>
 					</div>
-					<br/>
+					<br />
 					<button type="submit" class="btn btn-default">保存</button>
 					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 					<button type="reset" class="btn btn-default">重置</button>

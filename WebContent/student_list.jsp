@@ -70,8 +70,11 @@
 			<!--左边部分（链接列表组）开始-->
 			<div class="col-md-2">
 				<div class="list-group">
-					<a href="${pageContext.request.contextPath}/student?method=pageList" class="list-group-item active"> 学生列表 </a> 
-					<a href="${pageContext.request.contextPath}/student?method=getAddBanJiPage" class="list-group-item">学生添加</a>
+					<a
+						href="${pageContext.request.contextPath}/student?method=pageList"
+						class="list-group-item active"> 学生列表 </a> <a
+						href="${pageContext.request.contextPath}/student?method=getAddBanJiPage"
+						class="list-group-item">学生添加</a>
 				</div>
 			</div>
 			<!--左边部分（链接列表组）结束-->
@@ -79,10 +82,8 @@
 			<div class="col-md-10">
 				<table class="table table-hover">
 					<tr>
-						<th>
-							<input type="checkbox" id="selectAlls" onclick="selectAll()" />
-							全选
-						</th>
+						<th><input type="checkbox" id="selectAlls"
+							onclick="selectAll()" /> 全选</th>
 						<th>ID</th>
 						<th>姓名</th>
 						<th>年龄</th>
@@ -90,28 +91,23 @@
 						<th>班级</th>
 						<th>修改</th>
 						<th>删除</th>
-						
+
 					</tr>
 					<c:forEach items="${pageBean.list}" var="map">
 						<tr>
-							<td>
-								<input type="checkbox" name="selectIds" value="${map['s_id']}" />
-							</td>
+							<td><input type="checkbox" name="selectIds"
+								value="${map['s_id']}" /></td>
 							<td>${map['s_id']}</td>
 							<td>${map['s_name']}</td>
 							<td>${map['s_age']}</td>
 							<td>${map['s_gender']}</td>
 							<td>${map['b_name']}</td>
-							<td>
-								<a href="${pageContext.request.contextPath}/student?method=toUpdate&id=${map['s_id']}">
-									修改
-								</a>
-							</td>
-							<td>
-								<a href="javascript:deleteById(${map['s_id']},${pageBean.pageNo})">
-									删除
-								</a>
-							</td>
+							<td><a
+								href="${pageContext.request.contextPath}/student?method=toUpdate&id=${map['s_id']}">
+									修改 </a></td>
+							<td><a
+								href="javascript:deleteById(${map['s_id']},${pageBean.pageNo})">
+									删除 </a></td>
 						</tr>
 					</c:forEach>
 				</table>
@@ -164,10 +160,14 @@
 		</nav>
 	</div>
 	<!--选择页结束 -->
-	<script type="text/javascript" src="${pageContext.request.contextPath}/lib/jquery/jquery-1.11.1.js"></script>
-	<script type="text/javascript" src="${pageContext.request.contextPath}/lib/bootstrap-3.3.7-dist/js/bootstrap.js"></script>
-	<script src="${pageContext.request.contextPath}/lib/layer/layer.js" type="text/javascript" charset="utf-8"></script>
-	<script src="${pageContext.request.contextPath}/js/mylayer.js" type="text/javascript" charset="utf-8"></script>
+	<script type="text/javascript"
+		src="${pageContext.request.contextPath}/lib/jquery/jquery-1.11.1.js"></script>
+	<script type="text/javascript"
+		src="${pageContext.request.contextPath}/lib/bootstrap-3.3.7-dist/js/bootstrap.js"></script>
+	<script src="${pageContext.request.contextPath}/lib/layer/layer.js"
+		type="text/javascript" charset="utf-8"></script>
+	<script src="${pageContext.request.contextPath}/js/mylayer.js"
+		type="text/javascript" charset="utf-8"></script>
 	<script type="text/javascript">
 			/* function deleteById(id,pageNo) {
 				//用户点了确定，confirm返回的是true，

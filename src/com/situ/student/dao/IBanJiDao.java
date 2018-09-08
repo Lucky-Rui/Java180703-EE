@@ -24,4 +24,6 @@ public interface IBanJiDao {
 
 	int deleteAll(String[] selectIds);
 
+	int findCountByName(String name);
+
 }

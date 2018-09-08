@@ -39,4 +39,48 @@ public class UserDaoImpl implements IUserDao {
 		return user;
 	}
 
+	@Override
+	public int findCountByName(String name) {
+		Connection connection = null;
+		PreparedStatement preparedStatement = null;
+		ResultSet resultSet = null;
+		int count = 0;
+		try {
+			connection = JDBCUtil.getConnection();
+			String sql = "select count(id) from user where name=?";
+			// 预编译sql
+			preparedStatement = connection.prepareStatement(sql);
+			preparedStatement.setString(1, name);
+			System.out.println(preparedStatement);
+			resultSet = preparedStatement.executeQuery();
+			if (resultSet.next()) {
+				count = resultSet.getInt(1);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			JDBCUtil.close(connection, preparedStatement, resultSet);
+		}
+
+		return count;
+	}
+
+	@Override
+	public int insert(User user) {
+		Connection connection = null;
+		PreparedStatement preparedStatement = null;
+		int count = 0;
+		try {
+			connection = JDBCUtil.getConnection();
+			String sql = "insert into user(name,password) values(?,?)";
+			preparedStatement = connection.prepareStatement(sql);
+			preparedStatement.setString(1, user.getName());
+			preparedStatement.setString(2, user.getPassword());
+			count = preparedStatement.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return count;
+	}
+
 }

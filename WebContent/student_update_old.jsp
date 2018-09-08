@@ -17,14 +17,11 @@
 	%>
 	<form action="<%=request.getContextPath() %>/student?method=update"
 		method="post">
-		<input type="hidden" name="id" value="${student.id}" /> 
-		姓名：<input
-			type="text" name="name" value="${student.name}" /><br> 
-		年龄：<input
-			type="text" name="age" value="${student.age}" /><br>
-		性别：<input
-			type="text" name="gender" value="${student.gender}" /><br> 
-		<input type="submit" value="修改" /> <input type="reset" value="重置" />
+		<input type="hidden" name="id" value="${student.id}" /> 姓名：<input
+			type="text" name="name" value="${student.name}" /><br> 年龄：<input
+			type="text" name="age" value="${student.age}" /><br> 性别：<input
+			type="text" name="gender" value="${student.gender}" /><br> <input
+			type="submit" value="修改" /> <input type="reset" value="重置" />
 	</form>
 </body>
 </html>

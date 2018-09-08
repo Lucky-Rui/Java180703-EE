@@ -64,14 +64,9 @@
 			<div class="col-md-2">
 				<div class="list-group">
 					<a href="${pageContext.request.contextPath}/banji?method=pageList"
-						class="list-group-item "> 班级列表 
-					</a> 
-					<a href="banji_add.jsp" 
-						class="list-group-item ">班级添加
-					</a>
-					<a href="#" 
-						class="list-group-item active">班级修改
-					</a>
+						class="list-group-item "> 班级列表 </a> <a href="banji_add.jsp"
+						class="list-group-item ">班级添加 </a> <a href="#"
+						class="list-group-item active">班级修改 </a>
 				</div>
 			</div>
 			<!--左边部分（链接列表组）结束-->
@@ -80,11 +75,11 @@
 				<form style="width: 100%; text-align: center;"
 					action="${pageContext.request.contextPath}/banji?method=update"
 					method="post">
-					<input type="hidden" name="id" value="${banji.id}" /><br /> 
+					<input type="hidden" name="id" value="${banji.id}" /><br />
 					<div class="form-group">
-						<label for="name">班级名称</label> 
-					<input type="text" name="name" 
-						style="width: auto; margin: auto;" class="form-control" id="name" value="${banji.name}">
+						<label for="name">班级名称</label> <input type="text" name="name"
+							style="width: auto; margin: auto;" class="form-control" id="name"
+							value="${banji.name}">
 					</div>
 					<button type="submit" class="btn btn-default">保存</button>
 					<button type="reset" class="btn btn-default">重置</button>

@@ -227,4 +227,29 @@ public class BanJiDaoImpl implements IBanJiDao {
 		}
 		return banJi;
 	}
+
+	@Override
+	public int findCountByName(String name) {
+		Connection connection = null;
+		PreparedStatement preparedStatement = null;
+		ResultSet resultSet = null;
+		int count = 0;
+		try {
+			connection = JDBCUtil.getConnection();
+			String sql = "select count(id) from banji where name=?";
+			// 预编译sql
+			preparedStatement = connection.prepareStatement(sql);
+			preparedStatement.setString(1, name);
+			System.out.println(preparedStatement);
+			resultSet = preparedStatement.executeQuery();
+			if (resultSet.next()) {
+				count = resultSet.getInt(1);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			JDBCUtil.close(connection, preparedStatement, resultSet);
+		}
+		return count;
+	}
 }

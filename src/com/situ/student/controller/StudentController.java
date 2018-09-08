@@ -146,9 +146,9 @@ public class StudentController extends HttpServlet {
 		String name = req.getParameter("name");
 		Integer age = Integer.parseInt(req.getParameter("age"));
 		String gender = req.getParameter("gender");
-		int banjiId = Integer.parseInt(req.getParameter("banjiId"));
+		Integer banjiId = Integer.parseInt(req.getParameter("banjiId"));
 		Student student = new Student(name, age, gender, banjiId);
-		// 2、调用servlet处理
+		// 2、业务处理
 		boolean result = studentService.insert(student);
 		System.out.println(result ? "成功" : "失败");
 		// 重定向到列表界面

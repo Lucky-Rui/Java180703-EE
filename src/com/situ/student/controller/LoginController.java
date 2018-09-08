@@ -1,7 +1,9 @@
 package com.situ.student.controller;
 
 import java.io.IOException;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
@@ -9,11 +11,12 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import javax.swing.text.AbstractDocument.BranchElement;
 
 import com.situ.student.entity.User;
 import com.situ.student.service.IUserService;
 import com.situ.student.service.impl.UserServiceImpl;
+
+import net.sf.json.JSONObject;
 
 /**
  * Servlet implementation class LoginServlet
@@ -23,7 +26,7 @@ public class LoginController extends HttpServlet {
 
 	@Override
 	protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		//req.setCharacterEncoding("utf-8");
+		// req.setCharacterEncoding("utf-8");
 		String method = req.getParameter("method");
 		switch (method) {
 		case "login":
@@ -33,7 +36,10 @@ public class LoginController extends HttpServlet {
 			logout(req, resp);
 			break;
 		case "register":
-			register(req,resp);
+			register(req, resp);
+			break;
+		case "checkName":
+			checkName(req, resp);
 			break;
 		default:
 			break;
@@ -41,12 +47,39 @@ public class LoginController extends HttpServlet {
 	}
 
 	/**
-	 * 登陆操作
+	 * 注册时检查重名
+	 * 
 	 * @param req
 	 * @param resp
+	 * @throws IOException
 	 */
-	private void register(HttpServletRequest req, HttpServletResponse resp) {
-		
+	private void checkName(HttpServletRequest req, HttpServletResponse resp) throws IOException {
+		String name = req.getParameter("name");
+		boolean isExist = uerService.checkName(name);
+		// {"isExist":isExist}
+		Map<String, Object> map = new HashMap<>();
+		map.put("isExist", isExist);
+		JSONObject jsonObject = JSONObject.fromObject(map);
+		resp.setContentType("text/html;charset=utf-8");
+		// resp.getWriter().write("{\"isExist\":"+isExist+"}");
+		resp.getWriter().write(jsonObject.toString());
+	}
+
+	/**
+	 * 注册操作
+	 * 
+	 * @param req
+	 * @param resp
+	 * @throws IOException
+	 */
+	private void register(HttpServletRequest req, HttpServletResponse resp) throws IOException {
+		String name = req.getParameter("name");
+		String password = req.getParameter("password");
+		User user = new User(name, password);
+		boolean result = uerService.register(user);
+		System.out.println(result ? "注册成功" : "注册失败");
+		// 重定向到登陆界面
+		resp.sendRedirect(req.getContextPath() + "/login.jsp");
 	}
 
 	/**
@@ -59,9 +92,9 @@ public class LoginController extends HttpServlet {
 	private void logout(HttpServletRequest req, HttpServletResponse resp) throws IOException {
 		HttpSession session = req.getSession();
 		User user = (User) session.getAttribute("user");
-		//先得到servletContext对象
+		// 先得到servletContext对象
 		ServletContext servletContext = getServletContext();
-		//获取列表集合
+		// 获取列表集合
 		List<User> onLineUserList = (List<User>) servletContext.getAttribute("onLineUserList");
 		if (user != null) {
 			onLineUserList.remove(user);
@@ -100,12 +133,12 @@ public class LoginController extends HttpServlet {
 			HttpSession session = req.getSession();
 			// 将数据保存到域对象session
 			session.setAttribute("user", user);
-			//先得到servletContext对象
+			// 先得到servletContext对象
 			ServletContext servletContext = getServletContext();
-			//获取列表集合
+			// 获取列表集合
 			List<User> onLineUserList = (List<User>) servletContext.getAttribute("onLineUserList");
 			if (onLineUserList != null) {
-				//添加当前登录的user
+				// 添加当前登录的user
 				onLineUserList.add(user);
 			}
 			// 重定向到学生列表

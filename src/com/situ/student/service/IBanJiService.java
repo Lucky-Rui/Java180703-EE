@@ -69,4 +69,6 @@ public interface IBanJiService {
 	 * @return
 	 */
 	boolean deleteAll(String[] selectIds);
+
+	boolean checkName(String name);
 }

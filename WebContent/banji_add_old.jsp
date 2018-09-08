@@ -9,9 +9,8 @@
 <body>
 	<form action="<%=request.getContextPath()%>/banJi?method=insert"
 		method="post">
-		班级：<input type="text" name="className" /><br /> 
-		<input type="submit" value="保存" /> 
-		<input type="reset" value="重置" />
+		班级：<input type="text" name="className" /><br /> <input type="submit"
+			value="保存" /> <input type="reset" value="重置" />
 	</form>
 </body>
 </html>

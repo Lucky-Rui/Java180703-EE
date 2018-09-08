@@ -1,4 +1,5 @@
-	var mylayer = {
+	
+var mylayer = {
 	//有图标，自动关闭，没有后续操作
 	success : function(contents) {
 		layer.msg(
@@ -45,7 +46,6 @@
 			},
 			function(index) {
 				console.log("点击了取消");
-			}
-		);
+			});
 	}
 }

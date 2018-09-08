@@ -107,4 +107,13 @@ public class BanJiServiceImpl implements IBanJiService {
 		int count = banJiDao.deleteAll(selectIds);
 		return count == selectIds.length ? true : false;
 	}
+	
+	/**
+	 * 检查班级名重复问题
+	 */
+	@Override
+	public boolean checkName(String name) {
+		int count = banJiDao.findCountByName(name);
+		return count > 0 ? true : false;
+	}
 }
