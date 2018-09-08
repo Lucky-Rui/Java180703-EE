@@ -145,7 +145,7 @@ public class LoginController extends HttpServlet {
 			resp.sendRedirect(req.getContextPath() + "/student?method=pageList");
 		} else {
 			// 登陆失败
-			resp.sendRedirect(req.getContextPath() + "/fail.html");
+			resp.sendRedirect(req.getContextPath() + "/fail.jsp");
 		}
 	}
 }

@@ -33,11 +33,12 @@
 						href="${pageContext.request.contextPath}/student?method=pageList"><span
 							class="glyphicon glyphicon-home" aria-hidden="true"></span>&nbsp;&nbsp;&nbsp;学生管理
 					</a></li>
-					<li class="active"><a
+					<li><a
 						href="${pageContext.request.contextPath}/banji?method=pageList"><span
 							class="glyphicon glyphicon-home" aria-hidden="true"></span>&nbsp;&nbsp;&nbsp;班级管理</a></li>
-					<li><a href="${pageContext.request.contextPath}/course?method=pageList"><span class="glyphicon glyphicon-home"
-							aria-hidden="true"></span>&nbsp;&nbsp;&nbsp;课程管理</a></li>
+					<li class="active"><a
+						href="${pageContext.request.contextPath}/course?method=pageList"><span
+							class="glyphicon glyphicon-home" aria-hidden="true"></span>&nbsp;&nbsp;&nbsp;课程管理</a></li>
 					<li><a href="#"><span class="glyphicon glyphicon-home"
 							aria-hidden="true"></span>&nbsp;&nbsp;&nbsp;教务管理</a></li>
 					<li><a
@@ -63,24 +64,30 @@
 			<!--左边部分（链接列表组）开始-->
 			<div class="col-md-2">
 				<div class="list-group">
-					<a href="${pageContext.request.contextPath}/banji?method=pageList"
-						class="list-group-item "> 班级列表 </a> <a href="banji_add.jsp"
-						class="list-group-item active">班级添加 </a>
+					<a href="${pageContext.request.contextPath}/course?method=pageList"
+						class="list-group-item "> 课程列表 </a> <a href="course_add.jsp"
+						class="list-group-item ">课程添加 </a> <a href="#"
+						class="list-group-item active">课程修改 </a>
 				</div>
 			</div>
 			<!--左边部分（链接列表组）结束-->
 			<!--右边部分（form表单）开始-->
 			<div class="col-md-10">
 				<form style="width: 100%; text-align: center;"
-					action="${pageContext.request.contextPath}/banji?method=insert"
+					action="${pageContext.request.contextPath}/course?method=update"
 					method="post">
+					<input type="hidden" name="id" value="${course.id}" /><br />
 					<div class="form-group">
-						<label for="name">班级名称</label> <input type="text" name="name"
-							id="name" onblur="checkName()" style="width: auto; margin: auto;"
-							class="form-control" placeholder="例如：Java1809">
+						<label for="name">课程名称</label> <input type="text" name="name"
+							style="width: auto; margin: auto;" class="form-control" id="name"
+							value="${course.name}">
 					</div>
-					<button type="submit" class="btn btn-default">添加</button>
-					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+					<div class="form-group">
+						<label for="credit">课程学分</label> <input type="text" name="credit"
+							style="width: auto; margin: auto;" class="form-control"
+							id="credit" value="${course.credit}">
+					</div>
+					<button type="submit" class="btn btn-default">保存</button>
 					<button type="reset" class="btn btn-default">重置</button>
 				</form>
 			</div>
@@ -93,30 +100,5 @@
 		src="${pageContext.request.contextPath}/lib/jquery/jquery-1.11.1.js"></script>
 	<script type="text/javascript"
 		src="${pageContext.request.contextPath}/lib/bootstrap-3.3.7-dist/js/bootstrap.js"></script>
-	<script src="${pageContext.request.contextPath}/lib/layer/layer.js"
-		type="text/javascript" charset="utf-8"></script>
-	<script src="${pageContext.request.contextPath}/js/mylayer.js"
-		type="text/javascript" charset="utf-8"></script>
-	<script type="text/javascript">
-		function checkName(){
-			var name = document.getElementById("name").value;
-			//ajax请求验证这个用户名
-			$.post(
-				"${pageContext.request.contextPath}/banji?method=checkName",
-				{"name":name},
-				function(data) {
-					//{"isExist":isExist}
-					if (data.isExist){
-						//警告
-						mylayer.errorAlert("该班级已经存在，请使用其它班级名称");
-					} else {
-						//正确
-						mylayer.success("该班级名可以使用");
-					}
-				},
-				"json"
-			);
-		}
-	</script>
 </body>
 </html>

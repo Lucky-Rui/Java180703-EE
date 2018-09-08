@@ -39,8 +39,10 @@
 							<span class="glyphicon glyphicon-home" aria-hidden="true"></span>
 							&nbsp;&nbsp;&nbsp;班级管理
 					</a></li>
-					<li><a href="#"> <span class="glyphicon glyphicon-home"
-							aria-hidden="true"></span> &nbsp;&nbsp;&nbsp;课程管理
+					<li><a
+						href="${pageContext.request.contextPath}/course?method=pageList">
+							<span class="glyphicon glyphicon-home" aria-hidden="true"></span>
+							&nbsp;&nbsp;&nbsp;课程管理
 					</a></li>
 					<li><a href="#"> <span class="glyphicon glyphicon-home"
 							aria-hidden="true"></span> &nbsp;&nbsp;&nbsp;教务管理

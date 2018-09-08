@@ -59,11 +59,25 @@
 
 100%{
 opacity
+
+
 :
-1;-webkit-transform
+
+
+1;
+-webkit-transform
+
+
 :scale(1)
-;transform
+
+
+;
+transform
+
+
 :scale(1)
+
+
 }
 }
 @
@@ -75,11 +89,25 @@ keyframes layui-m-anim-scale { 0%{
 
 100%{
 opacity
+
+
 :
-1;-webkit-transform
+
+
+1;
+-webkit-transform
+
+
 :scale(1)
-;transform
+
+
+;
+transform
+
+
 :scale(1)
+
+
 }
 }
 .layui-m-anim-scale {
@@ -96,11 +124,25 @@ opacity
 
 100%{
 opacity
+
+
 :
-1;-webkit-transform
+
+
+1;
+-webkit-transform
+
+
 :translateY(0)
-;transform
+
+
+;
+transform
+
+
 :translateY(0)
+
+
 }
 }
 @
@@ -112,11 +154,25 @@ keyframes layui-m-anim-up { 0%{
 
 100%{
 opacity
+
+
 :
-1;-webkit-transform
+
+
+1;
+-webkit-transform
+
+
 :translateY(0)
-;transform
+
+
+;
+transform
+
+
 :translateY(0)
+
+
 }
 }
 .layui-m-anim-up {
@@ -208,9 +264,18 @@ opacity
 
 40%{
 transform
+
+
 :scale(1)
-;-webkit-transform
+
+
+;
+-webkit-transform
+
+
 :scale(1)
+
+
 }
 }
 @
@@ -221,9 +286,18 @@ keyframes layui-m-anim-loading { 0%,100%,80%{
 
 40%{
 transform
+
+
 :scale(1)
-;-webkit-transform
+
+
+;
+-webkit-transform
+
+
 :scale(1)
+
+
 }
 }
 .layui-m-layer2 .layui-m-layercont i:first-child {

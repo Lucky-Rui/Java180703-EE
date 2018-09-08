@@ -255,4 +255,14 @@
 		<servlet-name>SelectAreaServlet</servlet-name>
 		<url-pattern>/selectArea</url-pattern>
 	</servlet-mapping>
+	<servlet>
+		<description></description>
+		<display-name>CourseController</display-name>
+		<servlet-name>CourseController</servlet-name>
+		<servlet-class>com.situ.student.controller.CourseController</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>CourseController</servlet-name>
+		<url-pattern>/course</url-pattern>
+	</servlet-mapping>
 </web-app>

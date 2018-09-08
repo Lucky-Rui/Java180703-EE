@@ -70,5 +70,11 @@ public interface IBanJiService {
 	 */
 	boolean deleteAll(String[] selectIds);
 
+	/**
+	 * 添加班级的时候查找是否重名
+	 * 
+	 * @param name
+	 * @return
+	 */
 	boolean checkName(String name);
 }

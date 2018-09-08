@@ -33,11 +33,11 @@
 						href="${pageContext.request.contextPath}/student?method=pageList"><span
 							class="glyphicon glyphicon-home" aria-hidden="true"></span>&nbsp;&nbsp;&nbsp;学生管理
 					</a></li>
-					<li class="active"><a
+					<li><a
 						href="${pageContext.request.contextPath}/banji?method=pageList"><span
 							class="glyphicon glyphicon-home" aria-hidden="true"></span>&nbsp;&nbsp;&nbsp;班级管理</a></li>
-					<li><a href="${pageContext.request.contextPath}/course?method=pageList"><span class="glyphicon glyphicon-home"
-							aria-hidden="true"></span>&nbsp;&nbsp;&nbsp;课程管理</a></li>
+					<li class="active"><a href="#"><span
+							class="glyphicon glyphicon-home" aria-hidden="true"></span>&nbsp;&nbsp;&nbsp;课程管理</a></li>
 					<li><a href="#"><span class="glyphicon glyphicon-home"
 							aria-hidden="true"></span>&nbsp;&nbsp;&nbsp;教务管理</a></li>
 					<li><a
@@ -63,21 +63,24 @@
 			<!--左边部分（链接列表组）开始-->
 			<div class="col-md-2">
 				<div class="list-group">
-					<a href="${pageContext.request.contextPath}/banji?method=pageList"
-						class="list-group-item "> 班级列表 </a> <a href="banji_add.jsp"
-						class="list-group-item active">班级添加 </a>
+					<a href="${pageContext.request.contextPath}/course?method=pageList"
+						class="list-group-item "> 课程列表 </a> <a href="course_add.jsp"
+						class="list-group-item active">课程添加 </a>
 				</div>
 			</div>
 			<!--左边部分（链接列表组）结束-->
 			<!--右边部分（form表单）开始-->
 			<div class="col-md-10">
 				<form style="width: 100%; text-align: center;"
-					action="${pageContext.request.contextPath}/banji?method=insert"
+					action="${pageContext.request.contextPath}/course?method=insert"
 					method="post">
 					<div class="form-group">
-						<label for="name">班级名称</label> <input type="text" name="name"
+						<label for="name">课程名称</label> <input type="text" name="name"
 							id="name" onblur="checkName()" style="width: auto; margin: auto;"
-							class="form-control" placeholder="例如：Java1809">
+							class="form-control" placeholder=""> <label for="credit">课程学分</label>
+						<input type="text" name="credit" id="credit"
+							style="width: auto; margin: auto;" class="form-control"
+							placeholder="">
 					</div>
 					<button type="submit" class="btn btn-default">添加</button>
 					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
@@ -102,16 +105,16 @@
 			var name = document.getElementById("name").value;
 			//ajax请求验证这个用户名
 			$.post(
-				"${pageContext.request.contextPath}/banji?method=checkName",
+				"${pageContext.request.contextPath}/course?method=checkName",
 				{"name":name},
 				function(data) {
 					//{"isExist":isExist}
 					if (data.isExist){
 						//警告
-						mylayer.errorAlert("该班级已经存在，请使用其它班级名称");
+						mylayer.errorAlert("该课程已经存在，请使用其它班级名称");
 					} else {
 						//正确
-						mylayer.success("该班级名可以使用");
+						mylayer.success("该课程名可以使用");
 					}
 				},
 				"json"

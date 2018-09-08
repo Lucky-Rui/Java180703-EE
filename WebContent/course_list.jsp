@@ -33,11 +33,12 @@
 						href="${pageContext.request.contextPath}/student?method=pageList"><span
 							class="glyphicon glyphicon-home" aria-hidden="true"></span>&nbsp;&nbsp;&nbsp;学生管理
 					</a></li>
-					<li class="active"><a
+					<li><a
 						href="${pageContext.request.contextPath}/banji?method=pageList"><span
 							class="glyphicon glyphicon-home" aria-hidden="true"></span>&nbsp;&nbsp;&nbsp;班级管理</a></li>
-					<li><a href="${pageContext.request.contextPath}/course?method=pageList"><span class="glyphicon glyphicon-home"
-							aria-hidden="true"></span>&nbsp;&nbsp;&nbsp;课程管理</a></li>
+					<li class="active"><a
+						href="${pageContext.request.contextPath}/course?method=pageList"><span
+							class="glyphicon glyphicon-home" aria-hidden="true"></span>&nbsp;&nbsp;&nbsp;课程管理</a></li>
 					<li><a href="#"><span class="glyphicon glyphicon-home"
 							aria-hidden="true"></span>&nbsp;&nbsp;&nbsp;教务管理</a></li>
 					<li><a
@@ -48,8 +49,9 @@
 					<li><a
 						href="${pageContext.request.contextPath}/student?method=pageList"><span>欢迎：${user.name}</span></a></li>
 					<li><a
-						href="${pageContext.request.contextPath}/login?method=logout"><span
-							class="glyphicon glyphicon-home" aria-hidden="true"></span>&nbsp;&nbsp;&nbsp;退出</a></li>
+						href="${pageContext.request.contextPath}/login?method=logout">
+							<span class="glyphicon glyphicon-home" aria-hidden="true"></span>&nbsp;&nbsp;&nbsp;退出
+					</a></li>
 				</ul>
 			</div>
 			<!-- /.navbar-collapse -->
@@ -63,9 +65,10 @@
 			<!--左边部分（链接列表组）开始-->
 			<div class="col-md-2">
 				<div class="list-group">
-					<a href="${pageContext.request.contextPath}/banji?method=pageList"
-						class="list-group-item active"> 班级列表 </a> <a href="banji_add.jsp"
-						class="list-group-item">班级添加</a>
+					<a href="${pageContext.request.contextPath}/course?method=pageList"
+						class="list-group-item active">课程列表 </a> <a
+						href="${pageContext.request.contextPath}/course_add.jsp"
+						class="list-group-item">课程添加</a>
 				</div>
 			</div>
 			<!--左边部分（链接列表组）结束-->
@@ -76,20 +79,22 @@
 						<th><input type="checkbox" id="selectAlls"
 							onclick="selectAll()" />全选</th>
 						<th>ID</th>
-						<th>班级名称</th>
+						<th>课程名称</th>
+						<th>课程学分</th>
 						<td>修改</td>
 						<td>删除</td>
 					</tr>
-					<c:forEach items="${pageBean.list}" var="banji">
+					<c:forEach items="${pageBean.list}" var="course">
 						<tr>
 							<td><input type="checkbox" name="selectIds"
-								value="${banji.id}" /></td>
-							<td>${banji.id}</td>
-							<td>${banji.name}</td>
+								value="${course.id}" /></td>
+							<td>${course.id}</td>
+							<td>${course.name}</td>
+							<td>${course.credit}</td>
 							<td><a
-								href="${pageContext.request.contextPath}/banji?method=toUpdate&id=${banji.id}">修改</a></td>
+								href="${pageContext.request.contextPath}/course?method=toUpdate&id=${course.id}">修改</a></td>
 							<td><a
-								href="javascript:deleteById(${banji.id},${pageBean.pageNo})">删除</a>
+								href="javascript:deleteById(${course.id},${pageBean.pageNo})">删除</a>
 							</td>
 						</tr>
 					</c:forEach>
@@ -110,7 +115,7 @@
 				</c:if>
 				<c:if test="${pageBean.pageNo != 1}">
 					<li><a
-						href="${pageContext.request.contextPath}/banji?method=pageList&pageNo=${pageBean.pageNo - 1}&pageSize=10"
+						href="${pageContext.request.contextPath}/course?method=pageList&pageNo=${pageBean.pageNo - 1}&pageSize=10"
 						aria-label="Previous"> <span aria-hidden="true">&laquo;</span>
 					</a></li>
 				</c:if>
@@ -122,7 +127,7 @@
 					</c:if>
 					<c:if test="${pageBean.pageNo != i}">
 						<li><a
-							href="${pageContext.request.contextPath}/banji?method=pageList&pageNo=${i}&pageSize=10">${i}</a></li>
+							href="${pageContext.request.contextPath}/course?method=pageList&pageNo=${i}&pageSize=10">${i}</a></li>
 					</c:if>
 				</c:forEach>
 				<!--中间页码结束  -->
@@ -134,7 +139,7 @@
 				</c:if>
 				<c:if test="${pageBean.pageNo != pageBean.totalPage}">
 					<li><a
-						href="${pageContext.request.contextPath}/banji?method=pageList&pageNo=${pageBean.pageNo + 1}&pageSize=10"
+						href="${pageContext.request.contextPath}/course?method=pageList&pageNo=${pageBean.pageNo + 1}&pageSize=10"
 						aria-label="Next"> <span aria-hidden="true">&raquo;</span>
 					</a></li>
 				</c:if>
@@ -157,11 +162,11 @@
 				//用户点了取消，confirm返回的是false，
 				var isDel = confirm("您确认要删除这个信息吗？");
 				if (isDel) {
-					location.href = "${pageContext.request.contextPath}/banji?method=deleteById&id="+ id+"&pageNo="+pageNo;
+					location.href = "${pageContext.request.contextPath}/course?method=deleteById&id="+ id+"&pageNo="+pageNo;
 				}
 			} */
 			function deleteById(id,pageNo){
-				mylayer.confirm("你确定要删除吗？","${pageContext.request.contextPath}/banji?method=deleteById&id="+ id+"&pageNo="+pageNo);
+				mylayer.confirm("你确定要删除吗？","${pageContext.request.contextPath}/course?method=deleteById&id="+ id+"&pageNo="+pageNo);
 			}
 			
 			function selectAll(){
@@ -173,7 +178,7 @@
 			function deleteAll() {
 				var isDel = confirm("您确认要删除这些信息吗？");
 				if(isDel){
-				$("#mainForm").attr("action", "${pageContext.request.contextPath}/banji?method=deleteAll");
+				$("#mainForm").attr("action", "${pageContext.request.contextPath}/course?method=deleteAll");
 				//用代码方式提交表单
 				$("#mainForm").submit();
 				}
