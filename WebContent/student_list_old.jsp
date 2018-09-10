@@ -32,7 +32,8 @@
 	</div>
 
 	<div style="text-align: center; height: 40px;">
-		<a href="student_add.jsp">新增</a> <a style="margin-left: 40px;"
+		<a href="student_add.jsp">新增</a> 
+		<a style="margin-left: 40px;"
 			href="javascript:deleteAll()">批量删除</a>
 
 		<!-- 解决jsp中路径写死问题  <%=request.getContextPath()%>-->

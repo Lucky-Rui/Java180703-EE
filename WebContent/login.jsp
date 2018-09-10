@@ -27,12 +27,12 @@
 			</div>
 			<div class="form-group">
 				<label for="exampleInputPassword1">密码</label> <input name="password"
-					style="width: auto; margin: auto;" type="text" class="form-control"
+					style="width: auto; margin: auto;" type="password" class="form-control"
 					id="exampleInputPassword1" placeholder="密码">
 			</div>
 			<div class="form-group">
 				<label for="exampleInputPassword1">验证码</label> <input
-					name="checkCode" style="width: auto; margin: auto;"
+					style="width: auto; margin: auto;"
 					name="checkCode" type="text" class="form-control"
 					id="exampleInputPassword1" placeholder="验证码"> <br /> <img
 					id="codeImg" alt=""
