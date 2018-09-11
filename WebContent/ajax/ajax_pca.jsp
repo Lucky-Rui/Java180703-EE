@@ -7,16 +7,18 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<script
-		src="${pageContext.request.contextPath}/lib/jquery/jquery-1.11.1.js"
-		type="text/javascript" charset="utf-8"></script>
-	省：
+	<script src="${pageContext.request.contextPath}/lib/jquery/jquery-1.11.1.js"
+		type="text/javascript" charset="utf-8">
+	</script>
+		省：
 	<select id="province" onchange="selectCitys(this)">
 		<option>--------请选择--------</option>
-	</select> 市：
+	</select> 
+		市：
 	<select id="city" onchange="selectAreas(this)">
 		<option>--------请选择--------</option>
-	</select> 区:
+	</select> 
+		区:
 	<select id="area">
 		<option>--------请选择--------</option>
 	</select>

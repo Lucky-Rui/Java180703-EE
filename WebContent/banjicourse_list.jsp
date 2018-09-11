@@ -82,7 +82,7 @@
 					method="post">
 					<div class="form-group">
 						<label for="gender">班级名称</label> 
-						<select name="banjiId"
+						<select name="banjiId" id="banji" onchange="selectCourse(this)"
 							class="form-control" style="width: auto; margin: auto;">
 							<option>---------请选择班级---------</option>
 							<c:forEach items="${list}" var="banji">
@@ -90,9 +90,10 @@
 							</c:forEach>
 						</select>
 					</div>
+					<!-- 选择完班级后，显示的是该班级没有的课程 -->
 					<div class="form-group">
 						<label for="gender" >课程名称</label> 
-						<select name="banjiId"
+						<select name="courseId" id="course"
 							class="form-control" style="width: auto; margin: auto;">
 							<option>---------请选择课程---------</option>
 							<c:forEach items="${list}" var="course">
