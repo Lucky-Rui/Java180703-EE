@@ -44,6 +44,13 @@ public class SelectAreaServlet extends HttpServlet {
 		}
 	}
 
+	/**
+	 * 选择省份
+	 * 
+	 * @param req
+	 * @param resp
+	 * @throws IOException
+	 */
 	private void selectProvince(HttpServletRequest req, HttpServletResponse resp) throws IOException {
 		Connection connection = null;
 		PreparedStatement preparedStatement = null;
@@ -67,16 +74,23 @@ public class SelectAreaServlet extends HttpServlet {
 		} finally {
 			JDBCUtil.close(connection, preparedStatement, resultSet);
 		}
-		
+
 		for (Province province : list) {
 			System.out.println(province);
 		}
-		
+
 		JSONArray jsonArray = JSONArray.fromObject(list);
 		resp.setContentType("text/html;charset=utf-8");
 		resp.getWriter().write(jsonArray.toString());
 	}
-	
+
+	/**
+	 * 选择城市
+	 * 
+	 * @param req
+	 * @param resp
+	 * @throws IOException
+	 */
 	private void selectCity(HttpServletRequest req, HttpServletResponse resp) throws IOException {
 		String provinceId = req.getParameter("provinceId");
 		Connection connection = null;
@@ -101,16 +115,23 @@ public class SelectAreaServlet extends HttpServlet {
 		} finally {
 			JDBCUtil.close(connection, preparedStatement, resultSet);
 		}
-		
+
 		for (City city : list) {
 			System.out.println(city);
 		}
-		
+
 		JSONArray jsonArray = JSONArray.fromObject(list);
 		resp.setContentType("text/html;charset=utf-8");
 		resp.getWriter().write(jsonArray.toString());
 	}
-	
+
+	/**
+	 * 选择县
+	 * 
+	 * @param req
+	 * @param resp
+	 * @throws IOException
+	 */
 	private void selectArea(HttpServletRequest req, HttpServletResponse resp) throws IOException {
 		String cityId = req.getParameter("cityId");
 		Connection connection = null;
@@ -135,11 +156,11 @@ public class SelectAreaServlet extends HttpServlet {
 		} finally {
 			JDBCUtil.close(connection, preparedStatement, resultSet);
 		}
-		
+
 		for (Area area : list) {
 			System.out.println(area);
 		}
-		
+
 		JSONArray jsonArray = JSONArray.fromObject(list);
 		resp.setContentType("text/html;charset=utf-8");
 		resp.getWriter().write(jsonArray.toString());

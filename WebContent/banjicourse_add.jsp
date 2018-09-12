@@ -66,9 +66,7 @@
 			<div class="col-md-2">
 				<div class="list-group">
 					<a href="${pageContext.request.contextPath}/banjicourse_list.jsp"
-						class="list-group-item active">班级课程表</a>
-					<a href="${pageContext.request.contextPath}/banjicourse_add.jsp"
-						class="list-group-item ">班级选课</a>
+						class="list-group-item active">班级选课</a>
 					<a
 						href="${pageContext.request.contextPath}/banji?method=pageList"
 						class="list-group-item">班级列表</a>
@@ -77,27 +75,28 @@
 				</div>
 			</div>
 			<!--左边部分（链接列表组）结束-->
-			
 			<!--右边部分（table表显示信息）开始-->
 			<div class="col-md-10">
-				<table class="table table-hover">
-					<tr>
-						<th>班级ID</th>
-						<th>班级名称</th>
-						<th>课程ID</th>
-						<th>课程名称</th>
-						<th>学分</th>
-					</tr>
-					<c:forEach items="${list}" var="map">
-						<tr>
-							<td>${map['b_id']}</td>
-							<td>${map['b_name']}</td>
-							<td>${map['c_id']}</td>
-							<td>${map['c_name']}</td>
-							<td>${map['c_credit']}</td>
-						</tr>
-					</c:forEach>
-				</table>
+				<form style="width: 100%; text-align: center;"
+					action="#"
+					method="post">
+					<div class="form-group">
+						<label for="gender">班级名称</label> 
+						<select  id="banji" onchange="selectCourse(this)"
+							class="form-control" style="width: auto; margin: auto;">
+							<option>---------请选择班级---------</option>
+						</select>
+					</div>
+					<!-- 选择完班级后，显示的是该班级没有的课程 -->
+					<div class="form-group">
+						<label for="gender" >课程名称</label> 
+						<select  id="course"
+							class="form-control" style="width: auto; margin: auto;">
+							<option>---------请选择课程---------</option>
+						</select>
+					</div>
+					<button type="submit" class="btn btn-default">保存</button>
+				</form>
 			</div>
 			<!--右边部分（table表显示信息）结束-->
 		</div>
@@ -112,7 +111,38 @@
 	<script src="${pageContext.request.contextPath}/js/mylayer.js"
 		type="text/javascript" charset="utf-8"></script>
 	<script type="text/javascript">
-
-	</script>
+			$(function(){
+				$.post(
+					"${pageContext.request.contextPath}/banjicourse?method=selectBanJi",
+					function(data){
+						console.log(data);
+						var html = "<option>---------请选择班级---------</option>";
+						for (var i = 0; i < data.length; i++) {
+							html += "<option value='"+data[i].id+"'>"+data[i].name+"</option>";
+						}
+						$("#banji").html(html);
+					},
+					"json"	
+				);
+			});
+			
+			function selectCourse(obj) {
+				//var banjiId = obj.value;
+				var banjiId = $(obj).val();
+				$.post(
+					"${pageContext.request.contextPath}/banjicourse?method=selectCourse",
+					{"banjiId" : banjiId},
+					function(data) {
+						console.log(data);
+						var html = "<option>---------请选择课程---------</option>";
+						for (var i = 0; i < data.length; i++) {
+							html += "<option value='"+data[i].id+"'>"+data[i].name+"</option>";
+						}
+						$("#course").html(html);
+					},
+					"json"
+				);
+			}
+		</script>
 </body>
 </html>

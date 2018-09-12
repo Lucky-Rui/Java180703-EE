@@ -111,7 +111,7 @@ public class StudentController extends HttpServlet {
 		System.out.println(pageBean);
 		// 3、放入数据，转发
 		req.setAttribute("pageBean", pageBean);
-		req.getRequestDispatcher("student_list.jsp").forward(req, resp);
+		req.getRequestDispatcher("/student_list.jsp").forward(req, resp);
 	}
 
 	private void update(HttpServletRequest req, HttpServletResponse resp) throws IOException {
