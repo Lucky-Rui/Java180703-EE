@@ -86,6 +86,7 @@
 						<th>课程ID</th>
 						<th>课程名称</th>
 						<th>学分</th>
+						<th>删除</th>
 					</tr>
 					<c:forEach items="${list}" var="map">
 						<tr>
@@ -94,6 +95,9 @@
 							<td>${map['c_id']}</td>
 							<td>${map['c_name']}</td>
 							<td>${map['c_credit']}</td>
+							<td><a
+								href="javascript:deleteById(${map['b_id']},${map['c_id']})">删除</a>
+							</td>
 						</tr>
 					</c:forEach>
 				</table>
@@ -111,7 +115,9 @@
 	<script src="${pageContext.request.contextPath}/js/mylayer.js"
 		type="text/javascript" charset="utf-8"></script>
 	<script type="text/javascript">
-
+		function deleteById(banjiId,courseId){
+			mylayer.confirm("你确定要删除吗？","${pageContext.request.contextPath}/banjicourse?method=deleteById&banjiId="+ banjiId+"&courseId="+courseId);
+		}
 	</script>
 </body>
 </html>

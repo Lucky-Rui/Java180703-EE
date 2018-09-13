@@ -32,6 +32,9 @@ public class BanJiCourseController extends HttpServlet {
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		String method = req.getParameter("method");
 		switch (method) {
+		case "deleteById":
+			deleteById(req, resp);
+			break;
 		case "insert":
 			insert(req, resp);
 			break;
@@ -47,6 +50,32 @@ public class BanJiCourseController extends HttpServlet {
 		default:
 			break;
 		}
+	}
+
+	/**
+	 * 删除班级的课程
+	 * 
+	 * @param req
+	 * @param resp
+	 * @throws IOException
+	 */
+	private void deleteById(HttpServletRequest req, HttpServletResponse resp) throws IOException {
+		Integer banjiId = Integer.parseInt(req.getParameter("banjiId"));
+		Integer courseId = Integer.parseInt(req.getParameter("courseId"));
+		Connection connection = null;
+		PreparedStatement preparedStatement = null;
+		int count = 0;
+		try {
+			connection = JDBCUtil.getConnection();
+			String sql = "delete from banji_course where banji_id=? and course_id=? ";
+			preparedStatement = connection.prepareStatement(sql);
+			preparedStatement.setInt(1, banjiId);
+			preparedStatement.setInt(2, courseId);
+			count = preparedStatement.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		resp.sendRedirect(req.getContextPath() + "/banjicourse?method=List");
 	}
 
 	/**
@@ -85,8 +114,7 @@ public class BanJiCourseController extends HttpServlet {
 	 * @throws IOException
 	 * @throws ServletException
 	 */
-	private void List(HttpServletRequest req, HttpServletResponse resp)
-			throws ServletException, IOException {
+	private void List(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		Connection connection = null;
 		PreparedStatement preparedStatement = null;
 		ResultSet resultSet = null;
@@ -123,7 +151,7 @@ public class BanJiCourseController extends HttpServlet {
 		PreparedStatement preparedStatement = null;
 		ResultSet resultSet = null;
 		List<Course> list = new ArrayList<>();
-		
+
 		try {
 			connection = JDBCUtil.getConnection();
 			String sql = "SELECT id AS c_id, NAME AS c_name, credit AS c_credit FROM course WHERE id NOT IN(SELECT c.id  FROM banji_course AS bc INNER JOIN course AS c  WHERE bc.course_id = c.id AND bc.banji_id = ?);";

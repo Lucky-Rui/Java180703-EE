@@ -101,6 +101,7 @@ public class StudentController extends HttpServlet {
 			pageNoStr = "1";
 		}
 		int pageNo = Integer.parseInt(pageNoStr);
+		
 		String pageSizeStr = req.getParameter("pageSize");
 		if (pageSizeStr == null || pageSizeStr.equals("")) {
 			pageSizeStr = "20";
