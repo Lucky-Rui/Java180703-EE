@@ -65,7 +65,9 @@
 			<!--左边部分（链接列表组）开始-->
 			<div class="col-md-2">
 				<div class="list-group">
-					<a href="${pageContext.request.contextPath}/banjicourse_list.jsp"
+					<a href="${pageContext.request.contextPath}/banjicourse?method=List"
+						class="list-group-item">班级课程表</a>
+					<a href="${pageContext.request.contextPath}/banjicourse_add.jsp"
 						class="list-group-item active">班级选课</a>
 					<a
 						href="${pageContext.request.contextPath}/banji?method=pageList"
@@ -78,11 +80,11 @@
 			<!--右边部分（table表显示信息）开始-->
 			<div class="col-md-10">
 				<form style="width: 100%; text-align: center;"
-					action="#"
+					action="${pageContext.request.contextPath}/banjicourse?method=insert"
 					method="post">
 					<div class="form-group">
 						<label for="gender">班级名称</label> 
-						<select  id="banji" onchange="selectCourse(this)"
+						<select  name="banjiId" id="banji" onchange="selectCourse(this)"
 							class="form-control" style="width: auto; margin: auto;">
 							<option>---------请选择班级---------</option>
 						</select>
@@ -90,7 +92,7 @@
 					<!-- 选择完班级后，显示的是该班级没有的课程 -->
 					<div class="form-group">
 						<label for="gender" >课程名称</label> 
-						<select  id="course"
+						<select  id="course" name="courseId"
 							class="form-control" style="width: auto; margin: auto;">
 							<option>---------请选择课程---------</option>
 						</select>

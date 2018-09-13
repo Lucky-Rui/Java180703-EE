@@ -65,7 +65,7 @@
 			<!--左边部分（链接列表组）开始-->
 			<div class="col-md-2">
 				<div class="list-group">
-					<a href="${pageContext.request.contextPath}/banjicourse_list.jsp"
+					<a href="${pageContext.request.contextPath}/banjicourse?method=List"
 						class="list-group-item active">班级课程表</a>
 					<a href="${pageContext.request.contextPath}/banjicourse_add.jsp"
 						class="list-group-item ">班级选课</a>
@@ -77,7 +77,6 @@
 				</div>
 			</div>
 			<!--左边部分（链接列表组）结束-->
-			
 			<!--右边部分（table表显示信息）开始-->
 			<div class="col-md-10">
 				<table class="table table-hover">

@@ -15,6 +15,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.situ.student.entity.BanJi;
+import com.situ.student.entity.BanJiCourse;
 import com.situ.student.entity.Course;
 import com.situ.student.util.JDBCUtil;
 import com.situ.student.util.ModelConvertUtil;
@@ -31,8 +32,11 @@ public class BanJiCourseController extends HttpServlet {
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		String method = req.getParameter("method");
 		switch (method) {
-		case "banjicourseList":
-			banjicourseList(req, resp);
+		case "insert":
+			insert(req, resp);
+			break;
+		case "List":
+			List(req, resp);
 			break;
 		case "selectBanJi":
 			selectBanJi(req, resp);
@@ -46,14 +50,43 @@ public class BanJiCourseController extends HttpServlet {
 	}
 
 	/**
+	 * 插入班级课程
+	 * 
+	 * @param req
+	 * @param resp
+	 * @throws IOException
+	 */
+	private void insert(HttpServletRequest req, HttpServletResponse resp) throws IOException {
+		Integer banjiId = Integer.parseInt(req.getParameter("banjiId"));
+		Integer courseId = Integer.parseInt(req.getParameter("courseId"));
+		BanJiCourse banJiCourse = new BanJiCourse(banjiId, courseId);
+
+		Connection connection = null;
+		PreparedStatement preparedStatement = null;
+		int count = 0;
+		try {
+			connection = JDBCUtil.getConnection();
+			String sql = "insert into banji_course(banji_id,course_id) values(?,?)";
+			preparedStatement = connection.prepareStatement(sql);
+			preparedStatement.setInt(1, banJiCourse.getBanjiId());
+			preparedStatement.setInt(2, banJiCourse.getCourseId());
+			count = preparedStatement.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		resp.sendRedirect(req.getContextPath() + "/banjicourse?method=List");
+	}
+
+	/**
 	 * 列出所有班级学习的所有课程名称
 	 * 
 	 * @param req
 	 * @param resp
-	 * @throws IOException 
-	 * @throws ServletException 
+	 * @throws IOException
+	 * @throws ServletException
 	 */
-	private void banjicourseList(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+	private void List(HttpServletRequest req, HttpServletResponse resp)
+			throws ServletException, IOException {
 		Connection connection = null;
 		PreparedStatement preparedStatement = null;
 		ResultSet resultSet = null;

@@ -285,7 +285,7 @@ public class StudentDaoImpl implements IStudentDao {
 		List<Map<String, Object>> list = new ArrayList<>();
 		try {
 			connection = JDBCUtil.getConnection();
-			String sql = "SELECT s.id AS s_id,s.name AS s_name,s.age AS s_age,s.gender AS s_gender,b.name AS b_name FROM student AS s INNER JOIN banji AS b ON s.banji_id = b.id limit ?,?";
+			String sql = "SELECT s.id AS s_id,s.name AS s_name,s.age AS s_age,s.gender AS s_gender,b.name AS b_name FROM student AS s INNER JOIN banji AS b ON s.banji_id = b.id ORDER BY s.id limit ?,? ";
 			// 预编译sql
 			preparedStatement = connection.prepareStatement(sql);
 			preparedStatement.setInt(1, offset);
