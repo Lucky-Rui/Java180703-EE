@@ -82,6 +82,13 @@
 			<!--左边部分（链接列表组）结束-->
 			<!--右边部分（table表显示信息）开始-->
 			<div class="col-md-10">
+				<form id="searchFrom" action="${pageContext.request.contextPath}/student?method=pageList" method="POST">
+						<input type="hidden" id="pageNo" name="pageNo"/>
+						姓名：<input type="text" name="name"/>
+						年龄：<input type="text" name="age"/>
+						<input type="submit" value="搜索">
+				</form>
+				<br/> 
 				<table class="table table-hover">
 					<tr>
 						<th><input type="checkbox" id="selectAlls"

@@ -84,7 +84,7 @@
 					method="post">
 					<div class="form-group">
 						<label for="gender">班级名称</label> 
-						<select  name="banjiId" id="banji" onchange="selectCourse(this)"
+						<select  id="banji" onchange="selectCourse(this)" name="banjiId"
 							class="form-control" style="width: auto; margin: auto;">
 							<option>---------请选择班级---------</option>
 						</select>

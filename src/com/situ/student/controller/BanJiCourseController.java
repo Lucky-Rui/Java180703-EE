@@ -123,16 +123,18 @@ public class BanJiCourseController extends HttpServlet {
 		PreparedStatement preparedStatement = null;
 		ResultSet resultSet = null;
 		List<Course> list = new ArrayList<>();
+		
 		try {
 			connection = JDBCUtil.getConnection();
-			String sql = "SELECT * FROM course";
+			String sql = "SELECT id AS c_id, NAME AS c_name, credit AS c_credit FROM course WHERE id NOT IN(SELECT c.id  FROM banji_course AS bc INNER JOIN course AS c  WHERE bc.course_id = c.id AND bc.banji_id = ?);";
 			// 预编译sql
 			preparedStatement = connection.prepareStatement(sql);
+			preparedStatement.setInt(1, Integer.parseInt(banjiId));
 			resultSet = preparedStatement.executeQuery();
 			while (resultSet.next()) {
-				Integer id = resultSet.getInt("id");
-				String name = resultSet.getString("name");
-				Integer credit = resultSet.getInt("credit");
+				Integer id = resultSet.getInt("c_id");
+				String name = resultSet.getString("c_name");
+				Integer credit = resultSet.getInt("c_credit");
 				Course course = new Course(id, name, credit);
 				list.add(course);
 			}

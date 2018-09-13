@@ -21,6 +21,12 @@ public class Course {
 		this.name = name;
 	}
 
+	public Course(Integer id, String name) {
+		super();
+		this.id = id;
+		this.name = name;
+	}
+
 	public Course(String name, Integer credit) {
 		super();
 		this.name = name;
