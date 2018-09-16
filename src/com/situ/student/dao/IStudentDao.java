@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Map;
 
 import com.situ.student.entity.Student;
+import com.situ.student.entity.StudentSearchCondition;
 
 public interface IStudentDao {
 	/**
@@ -73,5 +74,19 @@ public interface IStudentDao {
 	 * @return
 	 */
 	int deleteAll(String[] selectIds);
+
+	/**
+	 * 
+	 * @param searchCondition
+	 * @return
+	 */
+	int getTotalCount(StudentSearchCondition searchCondition);
+
+	/**
+	 * 
+	 * @param searchCondition
+	 * @return
+	 */
+	List<Map<String, Object>> pageList(StudentSearchCondition searchCondition);
 
 }

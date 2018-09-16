@@ -7,6 +7,7 @@ import com.situ.student.dao.IStudentDao;
 import com.situ.student.dao.impl.StudentDaoImpl;
 import com.situ.student.entity.PageBean;
 import com.situ.student.entity.Student;
+import com.situ.student.entity.StudentSearchCondition;
 import com.situ.student.service.IStudentService;
 
 public class StudentServiceImpl implements IStudentService {
@@ -106,6 +107,33 @@ public class StudentServiceImpl implements IStudentService {
 		// 批量删除
 		int count = studentDao.deleteAll(selectIds);
 		return count == selectIds.length ? true : false;
+	}
+
+	@Override
+	public PageBean<Student> getPageBean(StudentSearchCondition searchCondition) {
+		PageBean pageBean = new PageBean();
+		// 当前是第几页
+		pageBean.setPageNo(searchCondition.getPageNo());
+		// 一页有多少条数据
+		pageBean.setPageSize(searchCondition.getPageSize());
+		// 总记录数 private Integer totalCount
+		// select count(*) from student;
+		// select count(*) from student where name like "%张%" and age=20;
+		int totalCount = studentDao.getTotalCount(searchCondition);
+		pageBean.setTotalCount(totalCount);
+		//一共有多少页
+		//总数量   每页数量    总页数
+		// 10     3      4       10/3=3...1
+		// 11     3      4       10/3=3...2
+		// 12     3      4       10/3=4
+		// 13     3      5       10/3=4...1
+		int totalPage = (int)Math.ceil((double)totalCount / searchCondition.getPageSize());
+		pageBean.setTotalPage(totalPage);
+		// 当前页的数据
+		List<Map<String, Object>> list = studentDao.pageList(searchCondition);
+		pageBean.setList(list);
+		
+		return pageBean;
 	}
 
 }

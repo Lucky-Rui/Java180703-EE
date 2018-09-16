@@ -82,11 +82,16 @@
 			<!--左边部分（链接列表组）结束-->
 			<!--右边部分（table表显示信息）开始-->
 			<div class="col-md-10">
-				<form id="searchFrom" action="${pageContext.request.contextPath}/student?method=pageList" method="POST">
-						<input type="hidden" id="pageNo" name="pageNo"/>
-						姓名：<input type="text" name="name"/>
-						年龄：<input type="text" name="age"/>
-						<input type="submit" value="搜索">
+				<form action="${pageContext.request.contextPath}/student?method=pageList"
+						 id="searchFrom"  method="POST">
+ 					<input type="hidden" id="pageNo" name="pageNo"/>
+					姓名：<input type="text" name="name" value="${searchCondition.name}"/>
+					年龄：<input type="text" name="age" value="${searchCondition.age}"/>
+					性别：<select id="searchGender" name="gender">
+							<option value="">不限</option>
+							<option value="男">男</option>
+							<option value="女">女</option>
+						</select>
 				</form>
 				<br/> 
 				<table class="table table-hover">
@@ -100,7 +105,6 @@
 						<th>班级</th>
 						<th>修改</th>
 						<th>删除</th>
-
 					</tr>
 					<c:forEach items="${pageBean.list}" var="map">
 						<tr>
@@ -142,13 +146,13 @@
 				</c:if>
 				<!--上一页结束  -->
 				<!--中间页码开始 -->
-				<c:forEach var="i" begin="1" end="${pageBean.totalPage}" step="1">
-					<c:if test="${pageBean.pageNo == i}">
-						<li class="active"><a href="">${i}</a></li>
+				<c:forEach var="page" begin="1" end="${pageBean.totalPage}" step="1">
+					<c:if test="${pageBean.pageNo == page}">
+						<li class="active"><a href="">${page}</a></li>
 					</c:if>
-					<c:if test="${pageBean.pageNo != i}">
+					<c:if test="${pageBean.pageNo != page}">
 						<li><a
-							href="${pageContext.request.contextPath}/student?method=pageList&pageNo=${i}&pageSize=20">${i}</a></li>
+							href="${pageContext.request.contextPath}/student?method=pageList&pageNo=${page}&pageSize=20">${page}</a></li>
 					</c:if>
 				</c:forEach>
 				<!--中间页码结束  -->
@@ -186,6 +190,25 @@
 					location.href = "${pageContext.request.contextPath}/student?method=deleteById&id="+ id+"&pageNo="+pageNo;
 				}
 			} */
+			
+			function goPage(page) {
+				$("#pageNo").val(page);
+				$("#searchFrom").submit();
+			}
+			
+			function doSearch() {
+				var searchName = $("#searhName").val();
+				location.href="${pageContext.request.contextPath}/student?method=pageList&searchName=" + searchName;
+			}
+			
+			$(function() {
+				var options = $("#searchGender option:gt(0)");
+				for(var i = 0; i < options.length; i++) {
+					if (options[i].value == "${searchCondition.gender}") {
+						$(options[i]).prop("selected", true);
+					}
+				}
+			});
 			
 			function selectAll(){
 				//得到上面全选、反选按钮的状态

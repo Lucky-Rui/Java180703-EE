@@ -5,12 +5,12 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 import com.situ.student.dao.IStudentDao;
 import com.situ.student.entity.Student;
+import com.situ.student.entity.StudentSearchCondition;
 import com.situ.student.util.JDBCUtil;
 import com.situ.student.util.ModelConvertUtil;
 
@@ -199,7 +199,7 @@ public class StudentDaoImpl implements IStudentDao {
 		int count = 0;
 		try {
 			connection = JDBCUtil.getConnection();
-			String sql = "SELECT count(id) FROM student";
+			String sql = "SELECT COUNT(*) FROM student AS s INNER JOIN banji AS b ON s.banji_id = b.id";
 			preparedStatement = connection.prepareStatement(sql);
 			System.out.println(preparedStatement);
 			resultSet = preparedStatement.executeQuery();
@@ -277,6 +277,9 @@ public class StudentDaoImpl implements IStudentDao {
 		return count;
 	}
 
+	/**
+	 * 
+	 */
 	@Override
 	public List<Map<String, Object>> pageList(int offset, int pageSize) {
 		Connection connection = null;
@@ -313,6 +316,98 @@ public class StudentDaoImpl implements IStudentDao {
 		} finally {
 			JDBCUtil.close(connection, preparedStatement, resultSet);
 		}
+		return list;
+	}
+
+	/**
+	 * 
+	 */
+	@Override
+	public int getTotalCount(StudentSearchCondition searchCondition) {
+		Connection connection = null;
+		PreparedStatement preparedStatement = null;
+		ResultSet resultSet = null;
+		int count = 0;
+		try {
+			connection = JDBCUtil.getConnection();
+			String sql = "SELECT COUNT(*) FROM student AS s INNER JOIN banji AS b ON s.banji_id = b.id "
+					+ " where 1=1 ";
+			// + "where s.name like ? and s.age=? and s.gender=? ";
+
+			List conditions = new ArrayList<>();
+			if (searchCondition.getName() != null && !"".equals(searchCondition.getName())) {
+				sql += " and s.name like ?";
+				conditions.add("%" + searchCondition.getName() + "%");
+			}
+			if (searchCondition.getAge() != null) {
+				sql += " and s.age = ?";
+				conditions.add(searchCondition.getAge());
+			}
+			if (searchCondition.getGender() != null && !"".equals(searchCondition.getGender())) {
+				sql += " and s.gender = ?";
+				conditions.add(searchCondition.getGender());
+			}
+			preparedStatement = connection.prepareStatement(sql);
+			for (int i = 0; i < conditions.size(); i++) {
+				preparedStatement.setObject(i + 1, conditions.get(i));
+			}
+			System.out.println(preparedStatement);
+			resultSet = preparedStatement.executeQuery();
+			if (resultSet.next()) {
+				count = resultSet.getInt(1);// 第一列
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			JDBCUtil.close(connection, preparedStatement, resultSet);
+		}
+
+		return count;
+	}
+
+	@Override
+	public List<Map<String, Object>> pageList(StudentSearchCondition searchCondition) {
+		Connection connection = null;
+		PreparedStatement preparedStatement = null;
+		ResultSet resultSet = null;
+		List<Map<String, Object>> list = new ArrayList<>();
+		try {
+			connection = JDBCUtil.getConnection();
+			String sql = "SELECT s.id AS s_id,s.name AS s_name,s.age AS s_age,s.gender AS s_gender,b.name AS b_name FROM student AS s INNER JOIN banji AS b ON s.banji_id = b.id"
+					+ " where 1=1 ";
+			// + "where s.name like ? and s.age=? and s.gender=? limit ?,? ";
+			// 预编译sql
+			List conditions = new ArrayList<>();
+			if (searchCondition.getName() != null && !"".equals(searchCondition.getName())) {
+				sql += " and s.name like ?";
+				conditions.add("%" + searchCondition.getName() + "%");
+			}
+			if (searchCondition.getAge() != null) {
+				sql += " and s.age = ?";
+				conditions.add(searchCondition.getAge());
+			}
+			if (searchCondition.getGender() != null && !"".equals(searchCondition.getGender())) {
+				sql += " and s.gender = ?";
+				conditions.add(searchCondition.getGender());
+			}
+			sql += " limit ?,? ";
+			preparedStatement = connection.prepareStatement(sql);
+			for (int i = 0; i < conditions.size(); i++) {
+				preparedStatement.setObject(i + 1, conditions.get(i));
+			}
+			int offset = (searchCondition.getPageNo() - 1) * searchCondition.getPageSize();
+			preparedStatement.setInt(conditions.size() + 1, offset);
+			preparedStatement.setInt(conditions.size() + 2, searchCondition.getPageSize());
+
+			System.out.println(preparedStatement);
+			resultSet = preparedStatement.executeQuery();
+			list = ModelConvertUtil.convertList(resultSet);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			JDBCUtil.close(connection, preparedStatement, resultSet);
+		}
+
 		return list;
 	}
 }

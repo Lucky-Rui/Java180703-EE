@@ -17,12 +17,16 @@ import javax.servlet.http.HttpServletResponse;
 import com.situ.student.entity.BanJi;
 import com.situ.student.entity.BanJiCourse;
 import com.situ.student.entity.Course;
+import com.situ.student.service.IBanJiCourseService;
+import com.situ.student.service.impl.BanJiCourseServiceImpl;
 import com.situ.student.util.JDBCUtil;
 import com.situ.student.util.ModelConvertUtil;
 
 import net.sf.json.JSONArray;
 
 public class BanJiCourseController extends HttpServlet {
+	private IBanJiCourseService banJiCourseService = new BanJiCourseServiceImpl();
+	
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		doPost(req, resp);
@@ -62,6 +66,7 @@ public class BanJiCourseController extends HttpServlet {
 	private void deleteById(HttpServletRequest req, HttpServletResponse resp) throws IOException {
 		Integer banjiId = Integer.parseInt(req.getParameter("banjiId"));
 		Integer courseId = Integer.parseInt(req.getParameter("courseId"));
+
 		Connection connection = null;
 		PreparedStatement preparedStatement = null;
 		int count = 0;
@@ -89,7 +94,7 @@ public class BanJiCourseController extends HttpServlet {
 		Integer banjiId = Integer.parseInt(req.getParameter("banjiId"));
 		Integer courseId = Integer.parseInt(req.getParameter("courseId"));
 		BanJiCourse banJiCourse = new BanJiCourse(banjiId, courseId);
-
+		
 		Connection connection = null;
 		PreparedStatement preparedStatement = null;
 		int count = 0;

@@ -1,10 +1,10 @@
 package com.situ.student.service;
 
 import java.util.List;
-import java.util.Map;
 
 import com.situ.student.entity.PageBean;
 import com.situ.student.entity.Student;
+import com.situ.student.entity.StudentSearchCondition;
 
 public interface IStudentService {
 	/**
@@ -70,4 +70,10 @@ public interface IStudentService {
 	 */
 	boolean deleteAll(String[] selectIds);
 
+	/**
+	 * 
+	 * @param searchCondition
+	 * @return
+	 */
+	PageBean<Student> getPageBean(StudentSearchCondition searchCondition);
 }

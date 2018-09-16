@@ -10,10 +10,10 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.situ.student.dao.IBanJiDao;
 import com.situ.student.entity.BanJi;
 import com.situ.student.entity.PageBean;
 import com.situ.student.entity.Student;
+import com.situ.student.entity.StudentSearchCondition;
 import com.situ.student.service.IBanJiService;
 import com.situ.student.service.IStudentService;
 import com.situ.student.service.impl.BanJiServiceImpl;
@@ -101,17 +101,29 @@ public class StudentController extends HttpServlet {
 			pageNoStr = "1";
 		}
 		int pageNo = Integer.parseInt(pageNoStr);
-		
 		String pageSizeStr = req.getParameter("pageSize");
 		if (pageSizeStr == null || pageSizeStr.equals("")) {
 			pageSizeStr = "20";
 		}
 		int pageSize = Integer.parseInt(pageSizeStr);
+		
+		String name = req.getParameter("name");
+		String ageStr = req.getParameter("age");
+		Integer age = null;
+		if (ageStr != null && !"".equals(ageStr)) {
+			age = Integer.parseInt(ageStr);
+		}
+		String gender = req.getParameter("gender");
+		//把所有的搜索条件封装成了StudentSearchCondition这样一个对象
+		StudentSearchCondition searchCondition = new StudentSearchCondition(pageNo, pageSize, name, age, gender);
 		// 2、封装成PageBean，调用Service层业务逻辑
-		PageBean<Student> pageBean = studentService.getPageBean(pageNo, pageSize);
+		//PageBean<Student> pageBean = studentService.getPageBean(pageNo, pageSize);
+		//PageBean<Student> pageBean = studentService.getPageBean(searchCondition);
+		PageBean pageBean = studentService.getPageBean(searchCondition);
 		System.out.println(pageBean);
 		// 3、放入数据，转发
 		req.setAttribute("pageBean", pageBean);
+		req.setAttribute("searchCondition", searchCondition);
 		req.getRequestDispatcher("/student_list.jsp").forward(req, resp);
 	}
 
