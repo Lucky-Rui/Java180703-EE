@@ -374,7 +374,7 @@ public class StudentDaoImpl implements IStudentDao {
 		try {
 			connection = JDBCUtil.getConnection();
 			String sql = "SELECT s.id AS s_id,s.name AS s_name,s.age AS s_age,s.gender AS s_gender,b.name AS b_name FROM student AS s INNER JOIN banji AS b ON s.banji_id = b.id"
-					+ " where 1=1 ";
+					+ " where 1=1 ORDER BY s.id";
 			// + "where s.name like ? and s.age=? and s.gender=? limit ?,? ";
 			// 预编译sql
 			List conditions = new ArrayList<>();

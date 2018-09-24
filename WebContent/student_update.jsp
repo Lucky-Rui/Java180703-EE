@@ -96,7 +96,8 @@
 							id="gender" value="${student.gender}">
 					</div>
 					<div class="form-group">
-						<label for="gender">学生班级</label> <select name="banjiId"
+						<label for="gender">学生班级</label>
+						<select name="banjiId"
 							class="form-control" style="width: auto; margin: auto;">
 							<option>---------请选择班级---------</option>
 							<c:forEach items="${list}" var="banji">
@@ -107,7 +108,7 @@
 									<option value="${banji.id}">${banji.name}</option>
 								</c:if>
 							</c:forEach>
-						</select>
+						 </select>
 					</div>
 					<br />
 					<button type="submit" class="btn btn-default">保存</button>

@@ -92,6 +92,7 @@
 							<option value="男">男</option>
 							<option value="女">女</option>
 						</select>
+					<input type="submit" value="搜索">
 				</form>
 				<br/> 
 				<table class="table table-hover">
